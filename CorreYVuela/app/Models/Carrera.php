@@ -18,4 +18,11 @@ class Carrera extends Model
 
     public $timestamps = true;
 
+    public function inscritos()
+    {
+        return $this->belongsToMany(Usuario::class, 'inscripciones', 'carrera_id', 'usuario_id');
+    }
+    
+
+
 }

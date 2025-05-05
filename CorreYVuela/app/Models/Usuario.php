@@ -20,6 +20,14 @@ class Usuario extends Authenticatable
     public $timestamps = true;
 
     // Relación de un usuario con muchos reportes
+
+
+    public function carreras()
+    {
+        return $this->belongsToMany(Carrera::class, 'inscripciones', 'usuario_id', 'carrera_id');
+    }
+    
+
     
 }
 

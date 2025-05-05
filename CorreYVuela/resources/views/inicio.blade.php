@@ -36,7 +36,7 @@
     <main>
         <section class="main-content animate-fadein">
             <h1>Bienvenidos a Corre Y Vuela</h1>
-            <h3>La mejor empresa de eventos deportivos con espectáculos audiovisuales</h3>
+            <h3>Empresa de eventos deportivos con espectáculos audiovisuales al aire libre</h3>
         </section>
 
         <section class="info-section animate-fadein" style="animation-delay: 0.2s;">

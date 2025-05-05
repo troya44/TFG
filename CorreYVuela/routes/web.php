@@ -31,3 +31,12 @@ Route::post('/usuarios', [AuthController::class, 'store'])->name('auth.store');
 Route::get('/inicio', [AuthController::class, 'index'])->name('inicio');
 
 Route::get('/pruebas', [CarreraController::class, 'index'])->name('pruebas');   
+
+
+Route::get('/registrarCarrera', [CarreraController::class, 'create'])->name('registrarCarrera');
+Route::post('/guardar-carrera', [CarreraController::class, 'guardar'])->name('guardarCarrera');
+
+
+Route::get('/prueba/{id}/informacion', [CarreraController::class, 'informacionPrueba'])->name('informacionPrueba');
+Route::get('/prueba/{id}/inscritos', [CarreraController::class, 'listadoInscritos'])->name('listadoInscritos');
+Route::post('/prueba/{id}/inscribirse', [CarreraController::class, 'inscribirse'])->name('inscribirse');

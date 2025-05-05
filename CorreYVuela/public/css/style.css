@@ -238,3 +238,51 @@ p {
     margin-bottom: 2.5rem;
 }
 
+
+
+
+
+
+/* Tooltip */
+.tooltip-text {
+    visibility: hidden;
+    opacity: 0;
+    width: 140px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 6px 0;
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    bottom: 120%; /* Aparece encima del botón */
+    margin-left: -70px; /* Centra el tooltip */
+    font-size: 14px;
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+
+.tooltip-btn:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+
+textarea {
+    width: 100%;
+    min-height: 80px;
+    border-radius: 7px;
+    border: 1px solid #f2e7d5;
+    padding: 0.7rem;
+    font-size: 1rem;
+    resize: vertical;
+    background-color: #fcf8f3;
+    color: #6d5c4d;
+    transition: border 0.2s, box-shadow 0.2s;
+}
+textarea:focus {
+    border-color: #d6c6b8;
+    outline: none;
+    box-shadow: 0 0 6px #d6c6b8;
+}
