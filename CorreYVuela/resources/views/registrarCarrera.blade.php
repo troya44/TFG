@@ -8,6 +8,30 @@
     <title>Registrar Carrera</title>
 </head>
 <body>
+    <header class="navbar">
+        <div class="navbar-logo">
+            <a href="{{ route('inicio') }}">
+                <h1>Corre Y Vuela</h1>
+            </a>
+        </div>
+        <nav class="navbar-links">
+            <p class="bienvenida">
+                @auth
+                    @if(Auth::user()->admin)
+                        Bienvenido, administrador {{ Auth::user()->name }}
+                    @else
+                        Bienvenido, {{ Auth::user()->name }}
+                    @endif
+                @endauth
+            </p>
+            <form action="{{ route('logout') }}" method="POST" class="logout">
+                @csrf
+                <button type="submit" class="btn-logout">
+                    <span class="tooltip">Cerrar sesión</span>
+                </button>
+            </form>
+        </nav>
+    </header>
     <div class="main-content animate-fadein">
         <h1>Registrar Carrera</h1>
         <form action="{{ route('guardarCarrera') }}" method="POST" autocomplete="off">
