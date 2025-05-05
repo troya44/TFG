@@ -16,7 +16,7 @@ return new class extends Migration {
                 $table->string('dni')->unique();
                 $table->string('localidad');
                 $table->integer('telefono');
-                $table->enum('sexo', ['Hombre', 'Mujer']);
+                $table->enum('sexo',['Hombre', 'Mujer']);
                 $table->boolean('admin')->default(false);
                 $table->string('email');
                 $table->date('fecha_nacimiento');
