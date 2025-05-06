@@ -172,6 +172,22 @@
             <input type="date" name="fecha_nacimiento" id="fecha_nacimiento">
             @error('fecha_nacimiento') <span>{{ $message }}</span> @enderror
         </div>
+        <div class="form-group">
+        <label for="categoria">Categoria:</label>
+            <select id="categoria" name="categoria" required>
+                <option value="" disabled selected>Selecciona la categoria</option>
+                <option value="Cadete">Cadete(15 a 16 años)</option>
+                <option value="Juvenil">Juvenil(17 a 18 años)</option>
+                <option value="Sub-23">Sub-23(19 a 23 años)</option>
+                <option value="Elite">Elite(24 a 30 años)</option>
+                <option value="Master 30">Máster 30( 31 a 40 años)</option>
+                <option value="Master 40">Máster 40( 41 a 50 años)</option>
+                <option value="Master 50">Máster 50( 51 a 60 años)</option>
+                <option value="Master 60+">Máster 60+(61 años y más)</option>
+            </select>
+        </div>
+
+        
 
         <div class="form-group">
             <label for="password">Contraseña:</label>

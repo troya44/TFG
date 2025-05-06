@@ -1,17 +1,11 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use App\Mail\WelcomeEmail;
-use App\Mail\NewUserNotification;
-use App\Models\Dispositivo;
 
-use Illuminate\Support\Facades\Mail;
 
 
 class AuthController extends Controller
@@ -21,6 +15,32 @@ class AuthController extends Controller
     {
         return view('auth.login');
     }
+
+    private function calcularCategoria($fechaNacimiento)
+{
+    $edad = \Carbon\Carbon::parse($fechaNacimiento)->age;
+
+    if ($edad >= 15 && $edad <= 16) {
+        return 'Cadete';
+    } elseif ($edad >= 17 && $edad <= 18) {
+        return 'Juvenil';
+    } elseif ($edad >= 19 && $edad <= 23) {
+        return 'Sub-23';
+    } elseif ($edad >= 24 && $edad <= 30) {
+        return 'Elite';
+    } elseif ($edad >= 31 && $edad <= 40) {
+        return 'Master 30';
+    } elseif ($edad >= 41 && $edad <= 50) {
+        return 'Master 40';
+    } elseif ($edad >= 51 && $edad <= 60) {
+        return 'Master 50';
+    } elseif ($edad >= 61) {
+        return 'Master 60+';
+    } else {
+        return 'Sin categoría';
+    }
+}
+
 
     // Realiza el login del usuario
     public function login(Request $request)
@@ -78,6 +98,9 @@ class AuthController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
+
+        $categoria = $this->calcularCategoria($request->fecha_nacimiento);
+
     
         // Crear el nuevo usuario y cifrar la contraseña antes de guardarla
         $usuario = Usuario::create([
@@ -91,6 +114,7 @@ class AuthController extends Controller
             'fecha_nacimiento' => $request->fecha_nacimiento,
             'admin' => 0, // Por defecto, el nuevo usuario no es administrador
             'email' => $request->email,
+            'categoria' => $categoria,
             'password' => bcrypt($request->password), // Asegúrate de cifrar la contraseña
             
         ]);
@@ -133,6 +157,9 @@ public function store(Request $request)
         'password' => 'required|string|confirmed|min:8',
     ]);
 
+        $categoria = $this->calcularCategoria($validatedData['fecha_nacimiento']);
+
+
     
     // Crear el usuario
     $user = new Usuario();
@@ -146,6 +173,7 @@ public function store(Request $request)
     $user->sexo = $validatedData['sexo'];
     $user->fecha_nacimiento = $validatedData['fecha_nacimiento'];
     $user->admin = 0; // Por defecto, el nuevo usuario no es administrador
+    $user->categoria = $categoria;
     $user->password = bcrypt($validatedData['password']);
 
     

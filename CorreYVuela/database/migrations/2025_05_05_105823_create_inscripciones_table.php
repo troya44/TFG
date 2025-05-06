@@ -15,6 +15,8 @@ return new class extends Migration
         $table->id();
         $table->unsignedBigInteger('usuario_id');
         $table->unsignedBigInteger('carrera_id');
+        $table->string('modalidad')->nullable();
+        $table->string('categoria')->nullable();
         $table->timestamps();
     
         $table->foreign('usuario_id')->references('id')->on('usuarios')->onDelete('cascade');

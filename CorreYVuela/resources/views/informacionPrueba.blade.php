@@ -68,6 +68,15 @@
         <input type="text" name="dni" value="{{ Auth::user()->dni }}" required>
         <label>Email:</label>
         <input type="email" name="email" value="{{ Auth::user()->email }}" required>
+        <label for="categoria">Categoria:</label>
+        <input type="text" name="categoria" value="{{ Auth::user()->categoria }}" readonly>
+        <label for="modalidad">Modalidad:</label>
+            <select id="modalidad" name="modalidad" required>
+                <option value="" disabled selected>Selecciona la modalidad</option>
+                <option value="Senderismo">Senderismo</option>
+                <option value="Ciclismo">Ciclismo</option>
+                <option value="Trail">Trail</option>
+            </select>
         <!-- Añade aquí más campos si lo necesitas -->
         <button type="submit">Confirmar inscripción</button>
     </form>

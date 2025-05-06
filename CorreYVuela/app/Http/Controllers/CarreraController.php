@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Carrera;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class CarreraController extends Controller
 {
@@ -71,7 +72,35 @@ public function inscribirse(Request $request, $id)
         return redirect()->back()->with('error', 'Ya estás inscrito en esta prueba.');
     }
 
-    $carrera->inscritos()->attach($usuario->id);
+    $fechaNacimiento = $usuario->fecha_nacimiento; // Asegúrate que este campo existe y está en formato válido
+    $edad = Carbon::parse($fechaNacimiento)->age;
+
+    // Asignar categoría según edad
+    if ($edad >= 15 && $edad <= 16) {
+        $categoria = 'Cadete';
+    } elseif ($edad >= 17 && $edad <= 18) {
+        $categoria = 'Juvenil';
+    } elseif ($edad >= 19 && $edad <= 23) {
+        $categoria = 'Sub-23';
+    } elseif ($edad >= 24 && $edad <= 30) {
+        $categoria = 'Elite';
+    } elseif ($edad >= 31 && $edad <= 40) {
+        $categoria = 'Master 30';
+    } elseif ($edad >= 41 && $edad <= 50) {
+        $categoria = 'Master 40';
+    } elseif ($edad >= 51 && $edad <= 60) {
+        $categoria = 'Master 50';
+    } elseif ($edad >= 61) {
+        $categoria = 'Master 60+';
+    } else {
+        $categoria = 'Sin categoría'; // En caso de que no encaje en ningún rango
+    }
+
+
+    $carrera->inscritos()->attach($usuario->id,[
+        'modalidad' => $request->input('modalidad'),
+        'categoria' => $request->input('categoria'),
+    ]);
 
     return redirect()->route('informacionPrueba', $id)->with('success', 'Inscripción realizada correctamente.');
 }

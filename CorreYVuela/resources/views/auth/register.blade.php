@@ -112,9 +112,6 @@
 </head>
 <body>
 
-
-
-<!-- Contenido principal -->
 <div class="divlog">
 
     <img src="{{ asset('LogoCorreYVuela.png') }}" alt="Logo" class="logo">
@@ -166,7 +163,7 @@
         </div>
 
         <div class="form-group">
-            <label for="sexo">sexo:</label>
+            <label for="sexo">Sexo:</label>
             <select name="sexo" id="sexo">
                 <option value="Hombre">Hombre</option>
                 <option value="Mujer">Mujer</option>
@@ -176,7 +173,7 @@
 
         <div class="form-group">
             <label for="fecha_nacimiento">Fecha de nacimiento:</label>
-            <input type="date" name="fecha_nacimiento" id="fecha_nacimiento">
+            <input type="date" name="fecha_nacimiento" id="fecha_nacimiento" required>
             @error('fecha_nacimiento') <span>{{ $message }}</span> @enderror
         </div>
 
@@ -190,17 +187,12 @@
             <input type="password" name="password_confirmation" id="password_confirmation" required>
         </div>
         <div>
-            
-       <!-- Botón de registro -->
        <button type="submit">Registrarme</button>
-
     </form>
 
-    <!-- Enlace para iniciar sesión -->
     <p>¿Ya tienes una cuenta? 
        <a href="{{ route('login') }}">Inicia sesión aquí</a></p>
 
 </div>
-
 </body>
 </html>

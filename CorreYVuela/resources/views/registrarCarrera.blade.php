@@ -67,6 +67,8 @@
                 <input type="number" id="distancia" name="distancia" required min="1" step="0.01" placeholder="Ej: 10">
             </div>
 
+            
+
             <button type="submit" class="btn-admin tooltip-btn" style="margin-top:1.2rem;">
                 Registrar Carrera
                 <span class="tooltip-text">Registrar Carrera</span>

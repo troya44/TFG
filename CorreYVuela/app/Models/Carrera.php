@@ -10,7 +10,7 @@ class Carrera extends Model
     protected $table = 'carreras';
 
     protected $fillable = [
-        'nombre', 'descripcion','fecha','hora','lugar','distancia','estado'
+        'nombre', 'descripcion','fecha','hora','lugar','distancia','estado',
     ];
     protected $attributes = [
         'admin' => false,  
@@ -20,7 +20,8 @@ class Carrera extends Model
 
     public function inscritos()
     {
-        return $this->belongsToMany(Usuario::class, 'inscripciones', 'carrera_id', 'usuario_id');
+        return $this->belongsToMany(Usuario::class, 'inscripciones', 'carrera_id', 'usuario_id')
+        ->withPivot('modalidad','categoria');
     }
     
 

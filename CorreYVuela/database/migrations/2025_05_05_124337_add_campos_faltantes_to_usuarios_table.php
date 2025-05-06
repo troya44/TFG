@@ -20,6 +20,7 @@ return new class extends Migration
         $table->enum('sexo',allowed:['Hombre', 'Mujer'])->after('telefono');
         $table->date('fecha_nacimiento')->after('sexo');        
         $table->boolean('admin')->default(false);
+        $table->string('categoria');
 
         // ...añade los demás campos que faltan
     });
