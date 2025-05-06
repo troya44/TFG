@@ -115,15 +115,32 @@
     </header>
 
     <main>
+        <!-- HERO SECTION -->
         <section class="main-content animate-fadein">
             <h1>Bienvenidos a Corre Y Vuela</h1>
-            <h3>Empresa de eventos deportivos con espectáculos audiovisuales al aire libre</h3>
-            <h3>"Tu mejor versión te está esperando en la línea de salida. ¿Estás listo para el reto?"</h3>
+            <h3>Organización de eventos deportivos y espectáculos audiovisuales al aire libre</h3>
+            <p style="font-size:1.15rem; max-width:700px; margin:auto; margin-bottom:1.5rem; color:#444;">
+                En Corre Y Vuela, creemos que el deporte es mucho más que una competición: es una oportunidad para superarse, compartir experiencias y vivir emociones inolvidables. Nuestra misión es ofrecerte eventos únicos que combinan el espíritu deportivo con la magia de la tecnología y el espectáculo.
+            </p>
+            <h3 style="color:#bfae9c;">"Tu mejor versión te está esperando en la línea de salida. ¿Estás listo para el reto?"</h3>
         </section>
 
+        <!-- NUEVA SECCIÓN: VALORES Y VISIÓN -->
+        <section class="info-section animate-fadein" style="animation-delay: 0.1s;">
+            <h1>Nuestros Valores y Visión</h1>
+            <ul style="margin-left: 1.5rem; margin-bottom: 1.2rem;">
+                <li><b>Pasión por el deporte:</b> Fomentamos la actividad física y la vida saludable en todas las edades.</li>
+                <li><b>Innovación:</b> Integramos tecnología audiovisual de última generación para crear experiencias memorables.</li>
+                <li><b>Inclusividad:</b> Nuestros eventos están abiertos a todos, sin importar edad, condición física o experiencia previa.</li>
+                <li><b>Compromiso social:</b> Apoyamos causas solidarias y fomentamos la integración a través del deporte.</li>
+                <li><b>Excelencia organizativa:</b> Nos esforzamos por ofrecer la máxima calidad en cada detalle, desde la inscripción hasta la meta.</li>
+            </ul>
+            <p>
+                Nuestra visión es ser un referente nacional en la organización de eventos deportivos innovadores, donde cada participante y espectador se lleve un recuerdo imborrable.
+            </p>
+        </section>
 
-
-
+        <!-- SECCIÓN DE ARTÍCULOS -->
         <section class="blog-section animate-fadein" style="animation-delay: 0.15s;">
             <h1 style="text-align:center; margin-bottom: 2rem;">Artículos destacados</h1>
             <div class="blog-grid">
@@ -134,18 +151,9 @@
                         <h2>Historias de Superación: Corredor con Discapacidad</h2>
                         <p class="excerpt">Corredor con discapacidad dando una lección de vida</p>
                         <div class="full-content">
-                            <p>En la edición de la San Silvestre Olvereña del año pasado, conocimos a Miguel Ángel, un
-                                corredor con movilidad reducida que completó el recorrido con una prótesis especial. Su
-                                esfuerzo, perseverancia y pasión por el deporte inspiraron a todos los presentes. Miguel
-                                nos enseñó que no existen límites cuando hay determinación y apoyo, que con empeño y
-                                perseverancia todo se consigue. Su historia es un
-                                ejemplo de superación y motivación para toda la comunidad deportiva, de ahi que cuando
-                                Miguel Angel cruzó la meta, muchos de los corredores y personas del publico se
-                                emocionaron y juntos le rindieron un homenaje en forma de aplausos y buenas palabras.
-                            </p>
-                            <p>Todos los años, cuando anunciamos la fecha para el evento, Miguel Angel es el primero en
-                                apuntarse y no perderse nada.</p>
-                            <p><b>¡Si Miguel Angel puede, porque no vas a poder tú!</b></p>
+                            <p>En la edición de la San Silvestre Olvereña del año pasado, conocimos a Miguel Ángel, un corredor con movilidad reducida que completó el recorrido con una prótesis especial. Su esfuerzo, perseverancia y pasión por el deporte inspiraron a todos los presentes. Miguel nos enseñó que no existen límites cuando hay determinación y apoyo, que con empeño y perseverancia todo se consigue. Su historia es un ejemplo de superación y motivación para toda la comunidad deportiva. Cuando Miguel Ángel cruzó la meta, muchos de los corredores y personas del público se emocionaron y juntos le rindieron un homenaje en forma de aplausos y buenas palabras.</p>
+                            <p>Todos los años, cuando anunciamos la fecha para el evento, Miguel Ángel es el primero en apuntarse y no perderse nada.</p>
+                            <p><b>¡Si Miguel Ángel puede, por qué no vas a poder tú!</b></p>
                         </div>
                         <button class="blog-entry-link">Leer más</button>
                     </div>
@@ -157,16 +165,7 @@
                         <h2>El Nacimiento de un Sueño</h2>
                         <p class="excerpt">El momento en el que nace Corre Y Vuela</p>
                         <div class="full-content">
-                            <p>La historia de Corre Y Vuela comenzó en un pequeño pueblo de la Sierra de Cádiz, en
-                                Olvera. Un joven apasionado por el deporte y la tecnología decidió unir sus fuerzas para
-                                crear eventos únicos. Hoy, esa ilusión se ha convertido en una empresa referente en la
-                                organización de eventos deportivos con espectáculos audiovisuales.
-                                El creador se llama Guillermo Troya Albarrán y su pasión por el deporte y la tecnología
-                                lo llevó a crear una empresa que combina ambas disciplinas. Desde sus inicios, ha
-                                trabajado incansablemente para ofrecer eventos de calidad, donde los corredores puedan
-                                disfrutar de una experiencia única y emocionante, junto con sus acompañantes y todo el
-                                publico que se acerque al lugar.</p>
-                            </p>
+                            <p>La historia de Corre Y Vuela comenzó en un pequeño pueblo de la Sierra de Cádiz, en Olvera. Un joven apasionado por el deporte y la tecnología decidió unir sus fuerzas para crear eventos únicos. Hoy, esa ilusión se ha convertido en una empresa referente en la organización de eventos deportivos con espectáculos audiovisuales. El creador se llama Guillermo Troya Albarrán y su pasión por el deporte y la tecnología lo llevó a crear una empresa que combina ambas disciplinas. Desde sus inicios, ha trabajado incansablemente para ofrecer eventos de calidad, donde los corredores puedan disfrutar de una experiencia única y emocionante, junto con sus acompañantes y todo el público que se acerque al lugar.</p>
                         </div>
                         <button class="blog-entry-link">Leer más</button>
                     </div>
@@ -176,70 +175,87 @@
                     <img src="{{ asset('reloj.jpg') }}" alt="Tras los Bastidores">
                     <div class="blog-entry-content">
                         <h2>Tras los Bastidores</h2>
-                        <p class="excerpt">Un vistazo a las 12-14 horas de trabajo intenso que hacen posible cada
-                            evento...</p>
+                        <p class="excerpt">Un vistazo a las 12-14 horas de trabajo intenso que hacen posible cada evento...</p>
                         <div class="full-content">
-                            <p>Detrás de cada evento de Corre Y Vuela existe un equipo multidisciplinario que dedica
-                                entre 12 y 14 horas de trabajo intenso y coordinado. La jornada comienza mucho antes de
-                                la llegada de los corredores, con la preparación minuciosa de la logística: montaje de
-                                carpas, señalización de rutas, instalación de puntos de hidratación y coordinación con
-                                los equipos de seguridad y primeros auxilios. Paralelamente, se supervisa la tecnología
-                                audiovisual, pruebas de sonido, pantallas y cronometraje, asegurando que cada detalle
-                                esté listo para el espectáculo.
-                            </p>
-                            <p>
-                                Durante el evento, el equipo permanece atento a cualquier imprevisto, gestionando desde
-                                la entrega de dorsales hasta la atención de los participantes y el público. La
-                                comunicación constante entre las distintas áreas es clave para que todo fluya sin
-                                contratiempos, permitiendo que corredores y espectadores vivan una experiencia memorable
-                                desde el inicio hasta la meta. Al finalizar la jornada, aún queda desmontar, limpiar y
-                                evaluar cada aspecto, cerrando un ciclo de esfuerzo y dedicación que muchas veces pasa
-                                desapercibido, pero es fundamental para el éxito de cada carrera.
-
-                            </p>
+                            <p>Detrás de cada evento de Corre Y Vuela existe un equipo multidisciplinario que dedica entre 12 y 14 horas de trabajo intenso y coordinado. La jornada comienza mucho antes de la llegada de los corredores, con la preparación minuciosa de la logística: montaje de carpas, señalización de rutas, instalación de puntos de hidratación y coordinación con los equipos de seguridad y primeros auxilios. Paralelamente, se supervisa la tecnología audiovisual, pruebas de sonido, pantallas y cronometraje, asegurando que cada detalle esté listo para el espectáculo.</p>
+                            <p>Durante el evento, el equipo permanece atento a cualquier imprevisto, gestionando desde la entrega de dorsales hasta la atención de los participantes y el público. La comunicación constante entre las distintas áreas es clave para que todo fluya sin contratiempos, permitiendo que corredores y espectadores vivan una experiencia memorable desde el inicio hasta la meta. Al finalizar la jornada, aún queda desmontar, limpiar y evaluar cada aspecto, cerrando un ciclo de esfuerzo y dedicación que muchas veces pasa desapercibido, pero es fundamental para el éxito de cada carrera.</p>
                         </div>
                         <button class="blog-entry-link">Leer más</button>
                     </div>
                 </article>
             </div>
         </section>
-        <section class="info-section animate-fadein" style="animation-delay: 0.2s;">
-            <h1>¿Quiénes somos?</h1>
-            <p>Corre y Vuela es una empresa dedicada a la organización de eventos deportivos con espectáculos
-                audiovisuales. Nos especializamos en crear experiencias únicas que combinan deporte, entretenimiento y
-                tecnología.</p>
-            <p>Nuestro objetivo es ofrecer eventos inolvidables que no solo resalten el talento deportivo, sino que
-                también cautiven a la audiencia con impresionantes espectáculos audiovisuales al aire libre.</p>
-            <p>Con un equipo de profesionales apasionados por el deporte y la tecnología, nos esforzamos por superar las
-                expectativas de nuestros clientes y participantes en cada evento que organizamos.</p>
-            <p>¡Únete a nosotros y vive la emoción de Corre y Vuela!</p>
-            <img src="{{ asset('LogoCorreYVuela.png') }}" alt="Logo Corre Y Vuela" class="logo"
-                style="margin-top: 1.5rem;">
+
+        <!-- NUEVA SECCIÓN: TESTIMONIOS -->
+        <section class="info-section animate-fadein" style="animation-delay: 0.18s;">
+            <h1>Testimonios de Participantes</h1>
+            <blockquote style="font-style:italic; background:#f3f3f3; border-left:5px solid #ffb76b; margin:1.5rem 0; padding:1rem 1.5rem;">
+                "Participar en Corre Y Vuela fue una de las mejores experiencias deportivas de mi vida. La organización, el ambiente y el espectáculo audiovisual hicieron que me sintiera como un auténtico protagonista." <br>
+                <span style="font-weight:bold; color:#8d7964;">- Laura G., corredora</span>
+            </blockquote>
+            <blockquote style="font-style:italic; background:#f3f3f3; border-left:5px solid #ffb76b; margin:1.5rem 0; padding:1rem 1.5rem;">
+                "Nunca había visto una carrera tan bien organizada y con tanta energía positiva. ¡Repetiré sin duda!" <br>
+                <span style="font-weight:bold; color:#8d7964;">- Manuel R., espectador</span>
+            </blockquote>
         </section>
 
+        <!-- SECCIÓN QUIÉNES SOMOS -->
+        <section class="info-section animate-fadein" style="animation-delay: 0.2s;">
+            <h1>¿Quiénes somos?</h1>
+            <p>Corre Y Vuela es una empresa dedicada a la organización de eventos deportivos con espectáculos audiovisuales. Nos especializamos en crear experiencias únicas que combinan deporte, entretenimiento y tecnología.</p>
+            <p>Nuestro objetivo es ofrecer eventos inolvidables que no solo resalten el talento deportivo, sino que también cautiven a la audiencia con impresionantes espectáculos audiovisuales al aire libre.</p>
+            <p>Con un equipo de profesionales apasionados por el deporte y la tecnología, nos esforzamos por superar las expectativas de nuestros clientes y participantes en cada evento que organizamos.</p>
+            <p>¡Únete a nosotros y vive la emoción de Corre Y Vuela!</p>
+            <img src="{{ asset('LogoCorreYVuela.png') }}" alt="Logo Corre Y Vuela" class="logo" style="margin-top: 1.5rem;">
+        </section>
+
+        <!-- NUEVA SECCIÓN: NUESTRO EQUIPO -->
+        <section class="info-section animate-fadein" style="animation-delay: 0.3s;">
+            <h1>Nuestro Equipo</h1>
+            <p>
+                El éxito de Corre Y Vuela se debe al compromiso y profesionalidad de nuestro equipo, formado por especialistas en organización de eventos, técnicos audiovisuales, entrenadores deportivos, voluntarios y colaboradores. Juntos, trabajamos para que cada carrera sea un acontecimiento seguro, divertido y emocionante para todos.
+            </p>
+        </section>
+
+        <!-- SECCIÓN NUESTROS EVENTOS -->
         <section class="info-section animate-fadein" style="animation-delay: 0.4s;">
             <h1>Nuestros eventos</h1>
-            <p>En Corre y Vuela, ofrecemos lo mejor de nosotros para nuestros corredores y público.</p>
+            <p>En Corre Y Vuela, ofrecemos lo mejor de nosotros para nuestros corredores y público.</p>
             <p>Ofrecemos una amplia gama de servicios, incluyendo:</p>
             <ul style="margin-left: 1.5rem; margin-bottom: 1.2rem;">
                 <li>Organización de carreras y maratones</li>
                 <li>Espectáculos de luces y sonido</li>
                 <li>Actividades deportivas para todas las edades</li>
                 <li>Servicio de ocio en nuestras carpas para el público que no quiere participar</li>
-                <li>Música en directo, junto a la retransmisión de la carrera</li>
+                <li>Música en directo y retransmisión de la carrera</li>
+                <li>Premios, sorteos y sorpresas para participantes y asistentes</li>
             </ul>
-            <p>¿A qué estás esperando para apuntarte?</p>
-            <p>Aquí podrás ver y apuntarte a nuestros próximos eventos</p>
+            <p>¿A qué estás esperando para apuntarte? Descubre nuestros próximos eventos y vive la experiencia.</p>
             <div style="text-align:center; margin-top:1.2rem;">
                 <a href="{{ route('pruebas') }}">
-                    <button type="button" class="btn-logout"
-                        style="width:auto; padding:0.7rem 2.2rem; font-size:1.1rem;">
+                    <button type="button" class="btn-logout" style="width:auto; padding:0.7rem 2.2rem; font-size:1.1rem;">
                         Ver pruebas
                     </button>
                 </a>
             </div>
         </section>
+
+        <!-- NUEVA SECCIÓN: CONTACTO -->
+        <section class="info-section animate-fadein" style="animation-delay: 0.5s;">
+            <h1>Contacto</h1>
+            <p>¿Tienes dudas, sugerencias o quieres colaborar con nosotros? Escríbenos y te responderemos lo antes posible.</p>
+            <ul style="margin-left: 1.5rem;">
+                <li>Email: <a href="mailto:correyvuela.contacto@gmail.com">correyvuela.contacto@gmail.com</a></li>
+                <li>Teléfono: +34 642 777 183</li>
+                <li>Redes sociales: <a href="https://www.instagram.com/correyvuela_eventos/">Instagram</a></li>
+            </ul>
+        </section>
     </main>
+
+    <footer style="text-align:center; margin-top:2rem; color:#888; font-size:0.95rem;">
+        &copy; {{ date('Y') }} Corre Y Vuela. Todos los derechos reservados.
+    </footer>
+
     <script>
         //función para desplegar y ocultar parte del texto de los articulos
         document.querySelectorAll('.blog-entry-link').forEach(function (btn) {
@@ -256,5 +272,4 @@
         });
     </script>
 </body>
-
 </html>
