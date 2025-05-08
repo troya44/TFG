@@ -40,3 +40,11 @@ Route::post('/guardar-carrera', [CarreraController::class, 'guardar'])->name('gu
 Route::get('/prueba/{id}/informacion', [CarreraController::class, 'informacionPrueba'])->name('informacionPrueba');
 Route::get('/prueba/{id}/inscritos', [CarreraController::class, 'listadoInscritos'])->name('listadoInscritos');
 Route::post('/prueba/{id}/inscribirse', [CarreraController::class, 'inscribirse'])->name('inscribirse');
+
+
+
+
+Route::get('/carreras/{carrera}/inscripcion/{usuario}/edit', [CarreraController::class, 'edit'])->name('inscripcion.edit');
+Route::put('/carreras/{carrera}/inscripcion/{usuario}', [CarreraController::class, 'update'])->name('inscripcion.update');
+Route::delete('/carreras/{carrera}/inscripcion/{usuario}', [CarreraController::class, 'destroy'])->name('inscripcion.destroy');
+

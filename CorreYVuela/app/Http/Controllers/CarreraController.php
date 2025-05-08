@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Carrera;
+use App\Models\Usuario;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+
 
 class CarreraController extends Controller
 {
@@ -103,6 +105,78 @@ public function inscribirse(Request $request, $id)
     ]);
 
     return redirect()->route('informacionPrueba', $id)->with('success', 'Inscripción realizada correctamente.');
+}
+
+
+
+public function edit($carreraId, $usuarioId)
+    {
+        $carrera = Carrera::findOrFail($carreraId);
+        $usuario = Usuario::findOrFail($usuarioId);
+
+        // Solo el usuario puede editar su inscripción
+        if (Auth::id() !== $usuario->id) {
+            abort(403, 'No autorizado');
+        }
+
+        // Busca la inscripción del usuario en la carrera (tabla pivote)
+        $inscripcion = $carrera->inscritos()->where('usuario_id', $usuario->id)->first();
+
+        if (!$inscripcion) {
+            return redirect()->back()->with('error', 'No tienes inscripción en esta carrera.');
+        }
+
+        return view('inscripcion.edit', [
+            'carrera' => $carrera,
+            'usuario' => $usuario,
+            'inscripcion' => $inscripcion
+        ]);
+    }
+
+    public function update(Request $request, $carreraId, $usuarioId)
+{
+    $carrera = Carrera::findOrFail($carreraId);
+    $usuario = Usuario::findOrFail($usuarioId);
+
+    if (Auth::id() !== $usuario->id) {
+        abort(403, 'No autorizado');
+    }
+
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'apellido1' => 'required|string|max:255',
+        'apellido2' => 'nullable|string|max:255',
+        'dni' => 'required|string|max:20',
+        'localidad' => 'required|string|max:255',
+        'fecha_nacimiento' => 'required|date',
+        'modalidad' => 'required|string|max:255',
+        'categoria' => 'required|string|max:255',
+    ]);
+
+    $usuario->update($request->only(['name', 'apellido1', 'apellido2', 'dni', 'localidad', 'fecha_nacimiento']));
+
+    $carrera->inscritos()->updateExistingPivot($usuario->id, [
+        'modalidad' => $request->modalidad,
+        'categoria' => $request->categoria,
+    ]);
+
+    return redirect()->route('informacionPrueba', $carrera->id)
+        ->with('success', 'Inscripción actualizada correctamente');
+}
+
+public function destroy($carreraId, $usuarioId)
+{
+    $carrera = Carrera::findOrFail($carreraId);
+    $usuario = Usuario::findOrFail($usuarioId);
+
+    if (Auth::id() !== $usuario->id) {
+        abort(403, 'No autorizado');
+    }
+
+    $carrera->inscritos()->detach($usuario->id);
+
+    return redirect()->route('informacionPrueba', $carrera->id)
+        ->with('success', 'Inscripción eliminada correctamente');
 }
 
 

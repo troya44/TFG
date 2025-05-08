@@ -192,4 +192,8 @@ public function index()
     return view('inicio');
 }
 
+
+
+
+
 }
