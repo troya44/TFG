@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-
-    <link rel="shortcut icon" type="image/ico" href="{{ asset('faviconV2.png') }}">
+    <link rel="shortcut icon" href="{{ asset('LogoCorreYVuela.png') }}" type="image/png">
     <style>
         /* Estilo general */
         * {

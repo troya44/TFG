@@ -73,6 +73,7 @@
     <form action="{{ route('inicio') }}" method="GET" style="display:inline;">
         <button type="submit" class="btn-admin tooltip-btn" style="margin-top:1rem;">
             <span class="tooltip-text">Volver</span>
+            Volver
         </button>
     </form>
 </body>

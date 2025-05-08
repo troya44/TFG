@@ -5,6 +5,9 @@ use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use App\Notifications\UsuarioRegistrado;
+use Illuminate\Support\Facades\Notification;
+
 
 
 
@@ -119,7 +122,11 @@ class AuthController extends Controller
             
         ]);
 
-        
+        $usuario->notify(new UsuarioRegistrado($usuario));
+
+        // Notificar a la empresa
+        $correoEmpresa = config('mail.from.address', 'correyvuela.contacto@gmail.com');
+        Notification::route('mail', $correoEmpresa)->notify(new UsuarioRegistrado($usuario));
     
 
     
@@ -180,6 +187,12 @@ public function store(Request $request)
 
     // Guardar el nuevo usuario
     $user->save();
+
+    $user->notify(new UsuarioRegistrado($user));
+
+    // Notificar a la empresa
+    $correoEmpresa = config('mail.from.address', 'correyvuela.contacto@gmail.com');
+    Notification::route('mail', $correoEmpresa)->notify(new UsuarioRegistrado($user));
 
     // Redirigir con un mensaje de éxito
     return redirect()->route('login')->with('success', 'Usuario creado exitosamente');

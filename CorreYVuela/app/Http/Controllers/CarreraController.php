@@ -7,6 +7,10 @@ use App\Models\Usuario;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use App\Notifications\InscripcionRealizada;
+use Illuminate\Support\Facades\Notification;
+
+
 
 
 class CarreraController extends Controller
@@ -68,13 +72,13 @@ public function listadoInscritos($id)
 public function inscribirse(Request $request, $id)
 {
     $carrera = Carrera::findOrFail($id);
-    $usuario = Auth::user(); // Asegúrate de que Auth usa el modelo Usuario
+    $usuario = Auth::user();
 
     if ($carrera->inscritos()->where('usuario_id', $usuario->id)->exists()) {
         return redirect()->back()->with('error', 'Ya estás inscrito en esta prueba.');
     }
 
-    $fechaNacimiento = $usuario->fecha_nacimiento; // Asegúrate que este campo existe y está en formato válido
+    $fechaNacimiento = $usuario->fecha_nacimiento;
     $edad = Carbon::parse($fechaNacimiento)->age;
 
     // Asignar categoría según edad
@@ -95,17 +99,31 @@ public function inscribirse(Request $request, $id)
     } elseif ($edad >= 61) {
         $categoria = 'Master 60+';
     } else {
-        $categoria = 'Sin categoría'; // En caso de que no encaje en ningún rango
+        $categoria = 'Sin categoría';
     }
 
-
-    $carrera->inscritos()->attach($usuario->id,[
+    // Primero attach
+    $carrera->inscritos()->attach($usuario->id, [
         'modalidad' => $request->input('modalidad'),
-        'categoria' => $request->input('categoria'),
+        'categoria' => $categoria,
     ]);
+
+    // Ahora recupera el usuario con los datos de la inscripción (pivote)
+    $usuarioPivot = $carrera->inscritos()->where('usuario_id', $usuario->id)->first();
+
+    // Notificar al usuario
+    if ($usuarioPivot) {
+        $usuarioPivot->notify(new InscripcionRealizada($carrera, $usuarioPivot));
+    }
+
+    // Notificar a la empresa (correo desde .env)
+    $correoEmpresa = config('mail.from.address', 'correyvuela.contacto@gmail.com');
+    \Illuminate\Support\Facades\Notification::route('mail', $correoEmpresa)
+        ->notify(new InscripcionRealizada($carrera, $usuarioPivot));
 
     return redirect()->route('informacionPrueba', $id)->with('success', 'Inscripción realizada correctamente.');
 }
+
 
 
 

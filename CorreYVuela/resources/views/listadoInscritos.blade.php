@@ -28,7 +28,8 @@
             <form action="{{ route('logout') }}" method="POST" class="logout">
                 @csrf
                 <button type="submit" class="btn-logout">
-                    <span class="tooltip">Cerrar sesión</span>
+                    Cerrar sesión
+                    <span class="tooltip-text">Cerrar sesión</span>
                 </button>
             </form>
         </nav>
@@ -114,17 +115,11 @@
                                         {{ $inscrito->name }} {{ $inscrito->apellido1 }} {{ $inscrito->apellido2 }}
                                         <span style="color:#bfae9c; font-size:0.95em; margin-left:1em;">
                                             ({{ $inscrito->pivot->categoria ?? 'Sin categoría' }})
-                                            <a href="{{ route('inscripcion.edit', [$carrera->id, $inscrito->id]) }}" class="btn-admin tooltip-btn" style="margin-left:1em;">
-                                                Editar Usuario
-                                            </a>
-                                            <form action="{{ route('inscripcion.destroy', [$carrera->id, $usuario->id]) }}" method="POST" style="margin-top: 1em;">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn-admin" style="background-color: #c0392b;" onclick="return confirm('¿Estás seguro de que quieres borrar tu inscripción?');">
-                                                    Borrar Inscripción
-                                                </button>
-                                            </form>
-                                            
+                                            @if(Auth::id() === $inscrito->id)
+                                                <a href="{{ route('inscripcion.edit', [$carrera->id, $inscrito->id]) }}" class="btn-admin tooltip-btn" style="margin-left:1em;">
+                                                    Editar Usuario
+                                                </a>
+                                            @endif
                                         </span>
                                     </strong>
                                 </li>
