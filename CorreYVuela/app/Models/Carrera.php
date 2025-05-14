@@ -10,7 +10,7 @@ class Carrera extends Model
     protected $table = 'carreras';
 
     protected $fillable = [
-        'nombre', 'descripcion','fecha','hora','lugar','distancia','estado',
+        'nombre', 'descripcion','fecha','hora','lugar','distancia','estado','cartel'
     ];
     protected $attributes = [
         'admin' => false,  
@@ -24,6 +24,11 @@ class Carrera extends Model
         ->withPivot('modalidad','categoria');
     }
     
+    public function fotos()
+    {
+        return $this->hasMany(Foto::class);
+    }
+
 
 
 }

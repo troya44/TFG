@@ -205,6 +205,10 @@ public function index()
     return view('inicio');
 }
 
+public function galeria()
+{
+    return view('galeria');
+}
 
 
 

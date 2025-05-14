@@ -39,22 +39,29 @@ class CarreraController extends Controller
 
     public function guardar(Request $request)
 {
-    // Validar los datos
-    $request->validate([
-        'nombre' => 'required|string',
-        'descripcion' => 'required|string',
+    $data = $request->validate([
+        'nombre' => 'required|string|max:255',
         'fecha' => 'required|date',
-        'hora' => 'required',
-        'lugar' => 'required|string',
+        'lugar' => 'required|string|max:255',
         'distancia' => 'required|numeric',
+        'descripcion' => 'nullable|string|max:1000',
+        'hora' => 'required|date_format:H:i',
+        'distancia' => 'required|numeric',
+        'cartel' => 'nullable|image|max:2048',
     ]);
 
-    // Guardar la carrera (ajusta el modelo si es necesario)
-    Carrera::create($request->all());
+    $data['admin'] = 0;
+    $data['estado'] = 'abierta';
 
-    // Redirigir o mostrar mensaje
-    return redirect()->route('pruebas')->with('success', 'Carrera registrada correctamente');
+    if ($request->hasFile('cartel')) {
+        $data['cartel'] = $request->file('cartel')->store('carteles', 'public');
+    }
+
+    Carrera::create($data);
+
+    return redirect()->route('pruebas')->with('success', 'Carrera creada correctamente');
 }
+
 
 public function informacionPrueba($id)
 {
@@ -118,7 +125,7 @@ public function inscribirse(Request $request, $id)
 
     // Notificar a la empresa (correo desde .env)
     $correoEmpresa = config('mail.from.address', 'correyvuela.contacto@gmail.com');
-    \Illuminate\Support\Facades\Notification::route('mail', $correoEmpresa)
+    Notification::route('mail', $correoEmpresa)
         ->notify(new InscripcionRealizada($carrera, $usuarioPivot));
 
     return redirect()->route('informacionPrueba', $id)->with('success', 'Inscripción realizada correctamente.');
@@ -196,6 +203,7 @@ public function destroy($carreraId, $usuarioId)
     return redirect()->route('informacionPrueba', $carrera->id)
         ->with('success', 'Inscripción eliminada correctamente');
 }
+
 
 
 

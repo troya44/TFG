@@ -7,6 +7,19 @@
     <title>Listado de Inscritos</title>
     <link rel="shortcut icon" href="{{ asset('LogoCorreYVuela.png') }}" type="image/png">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <style>
+.carrera-cartel {
+    display: block;
+    margin: 2rem auto 1.5rem auto;
+    max-width: 450px;
+    max-height: 450px;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    object-fit: contain;
+}
+</style>
 </head>
 <body>
     <header class="navbar">
@@ -40,7 +53,9 @@
             <span style="font-size:1.7rem; vertical-align:middle;">&#128101;</span>
             Listado de inscritos en <span style="color:#bfae9c;">{{ $carrera->nombre }}</span>
         </h2>
-
+@if($carrera->cartel)
+            <img src="{{ asset('storage/' . $carrera->cartel) }}" alt="Cartel de la carrera" class="carrera-cartel">
+        @endif
         @php
             $modalidades = ['Senderismo', 'Ciclismo', 'Trail'];
             $inscritosPorModalidad = $inscritos->groupBy(function($inscrito) {

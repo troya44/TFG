@@ -35,7 +35,17 @@
     </header>
     <div class="main-content animate-fadein">
         <h1>Registrar Carrera</h1>
-        <form action="{{ route('guardarCarrera') }}" method="POST" autocomplete="off">
+        @if ($errors->any())
+    <div class="alert alert-danger" style="margin-bottom:1rem;">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+        <form action="{{ route('guardarCarrera') }}" method="POST" autocomplete="off" enctype="multipart/form-data">
             @csrf
 
             <div class="form-group">
@@ -67,6 +77,9 @@
                 <label for="distancia">Distancia (km):</label>
                 <input type="number" id="distancia" name="distancia" required min="1" step="0.01" placeholder="Ej: 10">
             </div>
+
+            <label for="cartel">Cartel de la carrera:</label>
+            <input type="file" name="cartel" accept="image/*">
 
             
 

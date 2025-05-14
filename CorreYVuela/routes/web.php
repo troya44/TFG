@@ -7,6 +7,8 @@ use App\Http\Controllers\DispositivoController;
 use App\Http\Controllers\ArticuloController;
 use App\Http\Controllers\CarreraController;
 use App\Http\Controllers\InscripcionesController;
+use App\Http\Controllers\GaleriaController;
+
 
 Route::get('/', function () {
     return redirect()->route('login'); 
@@ -47,4 +49,9 @@ Route::post('/prueba/{id}/inscribirse', [CarreraController::class, 'inscribirse'
 Route::get('/carreras/{carrera}/inscripcion/{usuario}/edit', [CarreraController::class, 'edit'])->name('inscripcion.edit');
 Route::put('/carreras/{carrera}/inscripcion/{usuario}', [CarreraController::class, 'update'])->name('inscripcion.update');
 Route::delete('/carreras/{carrera}/inscripcion/{usuario}', [CarreraController::class, 'destroy'])->name('inscripcion.destroy');
+
+
+Route::get('/galeria', [GaleriaController::class, 'index'])->name('galeria.index');
+Route::get('/galeria/create', [GaleriaController::class, 'create'])->name('galeria.create');
+Route::post('/galeria', [GaleriaController::class, 'store'])->name('galeria.store');
 
