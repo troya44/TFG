@@ -8,7 +8,6 @@
     <meta charset="UTF-8">
     <title>{{ $esEmpresa ? 'Nueva inscripción recibida' : '¡Gracias por inscribirte!' }}</title>
     <link rel="shortcut icon" href="{{ asset('LogoCorreYVuela.png') }}" type="image/png">
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <style>
         body {
             background: #f4f6f8;

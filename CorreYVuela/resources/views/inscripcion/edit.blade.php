@@ -111,6 +111,12 @@
                 Borrar Inscripción
             </button>
         </form>
+
+        <form action="{{ route('pruebas') }}" method="GET" style="display:inline;">
+            <button type="submit" class="btn-admin" style="margin-top:1rem;">
+                Volver
+            </button>
+        </form>
     </div>
 </body>
 </html>

@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>{{ $esEmpresa ? 'Nuevo usuario registrado' : '¡Bienvenido a Corre y Vuela!' }}</title>
     <link rel="shortcut icon" href="{{ asset('LogoCorreYVuela.png') }}" type="image/png">
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <style>
         body {
             background: #f4f6f8;

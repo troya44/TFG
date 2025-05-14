@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,18 +8,114 @@
     <link rel="shortcut icon" href="{{ asset('LogoCorreYVuela.png') }}" type="image/png">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <style>
-.carrera-cartel {
-    display: block;
-    margin: 2rem auto 1.5rem auto;
-    max-width: 450px;
-    max-height: 450px;
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-    object-fit: contain;
-}
-</style>
+        /* Estilos generales */
+        .carrera-cartel {
+            display: block;
+            margin: 2rem auto 1.5rem auto;
+            max-width: 450px;
+            max-height: 450px;
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+            object-fit: contain;
+        }
+
+        .main-content {
+            padding: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .tabla-inscritos {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+        }
+
+        .tabla-inscritos th, .tabla-inscritos td {
+            padding: 1rem;
+            text-align: center;
+            border: 1px solid #e0e0e0;
+        }
+
+        .tabla-inscritos th {
+            background-color: #bfae9c;
+            color: white;
+        }
+
+        /* Estilo para botones */
+        .btn-admin {
+            padding: 0.6rem 1.2rem;
+            background-color: #8d7964;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 1rem;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-admin:hover {
+            background-color: #bfae9c;
+        }
+
+        /* Estilo para la lista de inscritos cuando no es administrador */
+        .inscrito-item {
+            background: rgba(250, 247, 240, 0.93);
+            margin-bottom: 0.7rem;
+            border-radius: 10px;
+            padding: 0.8rem 1rem;
+            box-shadow: 0 2px 8px rgba(200, 180, 150, 0.07);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .inscrito-item strong {
+            font-size: 1.1rem;
+        }
+
+        .inscrito-item span {
+            font-size: 0.9rem;
+            color: #bfae9c;
+            margin-left: 1em;
+        }
+
+        /* Estilo para el botón de "Editar Usuario" */
+        .btn-edit {
+            background-color: #8d7964;
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-edit:hover {
+            background-color: #bfae9c;
+        }
+
+        .btn-edit i {
+            margin-right: 0.5rem;
+        }
+
+        /* Ajuste de icono y espaciado */
+        .inscrito-item .btn-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .inscrito-item .btn-container a {
+            margin-left: 1rem;
+        }
+    </style>
 </head>
 <body>
     <header class="navbar">
@@ -42,7 +138,6 @@
                 @csrf
                 <button type="submit" class="btn-logout">
                     Cerrar sesión
-                    <span class="tooltip-text">Cerrar sesión</span>
                 </button>
             </form>
         </nav>
@@ -53,7 +148,7 @@
             <span style="font-size:1.7rem; vertical-align:middle;">&#128101;</span>
             Listado de inscritos en <span style="color:#bfae9c;">{{ $carrera->nombre }}</span>
         </h2>
-@if($carrera->cartel)
+        @if($carrera->cartel)
             <img src="{{ asset('storage/' . $carrera->cartel) }}" alt="Cartel de la carrera" class="carrera-cartel">
         @endif
         @php
@@ -106,15 +201,16 @@
                                             <td>{{ $inscrito->fecha_nacimiento }}</td>
                                             <td>{{ $inscrito->email }}</td>
                                             <td>{{ \Carbon\Carbon::parse($inscrito->created_at)->format('d/m/Y H:i') }}</td>
-                                            <td>{{ $inscrito->pivot->modalidad ?? 'Sin modalidad'}}</td>
+                                            <td>{{ $inscrito->pivot->modalidad ?? 'Sin modalidad' }}</td>
                                             <td>{{ $inscrito->pivot->categoria ?? 'Sin categoría' }}</td>
                                             <td>
                                                 @if(Auth::id() === $inscrito->id)
-                                                    <a href="{{ route('inscripcion.edit', [$carrera->id, $inscrito->id]) }}" class="btn-admin tooltip-btn">
-                                                        Editar Usuario
-                                                    </a>
+                                                    <div class="btn-container">
+                                                        <a href="{{ route('inscripcion.edit', [$carrera->id, $inscrito->id]) }}" class="btn-edit">
+                                                            <i class="fa fa-pencil-alt"></i> Editar Usuario
+                                                        </a>
+                                                    </div>
                                                 @endif
-
                                             </td>
                                         </tr>
                                     @endforeach
@@ -124,19 +220,20 @@
                     @else
                         <ul style="list-style:none; padding-left:0;">
                             @foreach($inscritosEnModalidad as $inscrito)
-                                <li style="background:rgba(250,247,240,0.93); margin-bottom:0.7rem; border-radius:10px; padding:0.8rem 1rem; box-shadow:0 2px 8px rgba(200,180,150,0.07); display:flex; align-items:center;">
-                                    <span style="font-size:1.3rem; margin-right:0.7rem;">&#128100;</span>
+                                <li class="inscrito-item">
                                     <strong>
                                         {{ $inscrito->name }} {{ $inscrito->apellido1 }} {{ $inscrito->apellido2 }}
                                         <span style="color:#bfae9c; font-size:0.95em; margin-left:1em;">
                                             ({{ $inscrito->pivot->categoria ?? 'Sin categoría' }})
-                                            @if(Auth::id() === $inscrito->id)
-                                                <a href="{{ route('inscripcion.edit', [$carrera->id, $inscrito->id]) }}" class="btn-admin tooltip-btn" style="margin-left:1em;">
-                                                    Editar Usuario
-                                                </a>
-                                            @endif
                                         </span>
                                     </strong>
+                                    @if(Auth::id() === $inscrito->id)
+                                        <div class="btn-container">
+                                            <a href="{{ route('inscripcion.edit', [$carrera->id, $inscrito->id]) }}" class="btn-edit">
+                                                <i class="fa fa-pencil-alt"></i> Editar Usuario
+                                            </a>
+                                        </div>
+                                    @endif
                                 </li>
                             @endforeach
                         </ul>
@@ -146,8 +243,7 @@
         @endif
 
         <form action="{{ route('pruebas') }}" method="GET" style="display:inline;">
-            <button type="submit" class="btn-admin tooltip-btn" style="margin-top:1rem; position:relative;">
-                <span class="tooltip-text">Volver</span>
+            <button type="submit" class="btn-admin" style="margin-top:1rem;">
                 Volver
             </button>
         </form>
