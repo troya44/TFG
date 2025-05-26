@@ -154,23 +154,39 @@
         <h1>Corre Y Vuela</h1>
       </a>
     </div>
-    <nav class="navbar-links">
-      <p class="bienvenida">
-        @auth
-          @if(Auth::user()->admin)
-            Bienvenido, administrador {{ Auth::user()->name }}
-          @else
-            Bienvenido, {{ Auth::user()->name }}
-          @endif
-        @endauth
-      </p>
-      <form action="{{ route('logout') }}" method="POST" class="logout">
+    <div class="navbar-links">
+        <p class="bienvenida">
+            @auth
+                @if(Auth::user()->admin)
+                    Bienvenido, administrador {{ Auth::user()->name }}
+                    <img class="perfil-usuario-header"
+                         src="{{ Auth::user()->foto_perfil ? asset('storage/' . Auth::user()->foto_perfil) : asset('images/default-profile.png') }}"
+                         alt="Foto de perfil">
+                @else
+                    Bienvenido, {{ Auth::user()->name }}
+                    <img class="perfil-usuario-header"
+                         src="{{ Auth::user()->foto_perfil ? asset('storage/' . Auth::user()->foto_perfil) : asset('images/default-profile.png') }}"
+                         alt="Foto de perfil">
+                @endif
+            @endauth
+        </p>
+
+        <a href="{{ url('menuUsuario') }}" class="btn-logout btn-zona-privada" style="margin-top: 10px;">
+            <i class="fas fa-user-circle"></i>
+            Zona privada
+            <span class="tooltip-text">Ver tu perfil y datos</span>
+        </a>
+
+
+
+        <form action="{{ route('logout') }}" method="POST" class="logout">
         @csrf
         <button type="submit" class="btn-logout">
           Cerrar sesión
           <span class="tooltip-text">Cerrar sesión</span>
         </button>
       </form>
+    </div>
     </nav>
   </header>
 
@@ -266,12 +282,12 @@
     <section class="info-section animate-fadein" style="animation-delay: 0.18s;" id="testimonios">
       <h1>Testimonios de Participantes</h1>
       <blockquote style="font-style:italic; background:#f3f3f3; border-left:5px solid #ffb76b; margin:1.5rem 0; padding:1rem 1.5rem;">
-        "Participar en Corre Y Vuela fue una de las mejores experiencias deportivas de mi vida. La organización, el ambiente y el espectáculo audiovisual hicieron que me sintiera como un auténtico protagonista." 
+        "Participar en Corre Y Vuela fue una de las mejores experiencias deportivas de mi vida. La organización, el ambiente y el espectáculo audiovisual hicieron que me sintiera como un auténtico protagonista."
         <br>
         <span style="font-weight:bold; color:#8d7964;">- Laura G., corredora</span>
       </blockquote>
       <blockquote style="font-style:italic; background:#f3f3f3; border-left:5px solid #ffb76b; margin:1.5rem 0; padding:1rem 1.5rem;">
-        "Nunca había visto una carrera tan bien organizada y con tanta energía positiva. ¡Repetiré sin duda!" 
+        "Nunca había visto una carrera tan bien organizada y con tanta energía positiva. ¡Repetiré sin duda!"
         <br>
         <span style="font-weight:bold; color:#8d7964;">- Manuel R., espectador</span>
       </blockquote>

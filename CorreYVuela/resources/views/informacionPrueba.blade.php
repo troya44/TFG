@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Información Pruebas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="shortcut icon" href="{{ asset('LogoCorreYVuela.png') }}" type="image/png">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <style>
@@ -36,11 +37,25 @@
                 @auth
                     @if(Auth::user()->admin)
                         Bienvenido, administrador {{ Auth::user()->name }}
+                        <img class="perfil-usuario-header"
+                             src="{{ Auth::user()->foto_perfil ? asset('storage/' . Auth::user()->foto_perfil) : asset('images/default-profile.png') }}"
+                             alt="Foto de perfil">
                     @else
                         Bienvenido, {{ Auth::user()->name }}
+                        <img class="perfil-usuario-header"
+                             src="{{ Auth::user()->foto_perfil ? asset('storage/' . Auth::user()->foto_perfil) : asset('images/default-profile.png') }}"
+                             alt="Foto de perfil">
                     @endif
                 @endauth
             </p>
+
+            <a href="{{ url('menuUsuario') }}" class="btn-logout btn-zona-privada" style="margin-top: 10px;">
+                <i class="fas fa-user-circle"></i>
+                Zona privada
+                <span class="tooltip-text">Ver tu perfil y datos</span>
+            </a>
+
+            <a href="menuUsuario" class="logout">Zona privada</a>
             <form action="{{ route('logout') }}" method="POST" class="logout">
                 @csrf
                 <button type="submit" class="btn-logout">

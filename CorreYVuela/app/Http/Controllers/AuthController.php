@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Notifications\UsuarioRegistrado;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Storage;
 
 
 
@@ -53,25 +54,25 @@ class AuthController extends Controller
             'dni' => 'required|string',
             'password' => 'required|string',
         ]);
-    
-       
-    
+
+
+
         // Intentar autenticar con las credenciales
         if (Auth::attempt(['dni' => $request->dni, 'password' => $request->password])) {
             // Si la autenticación es exitosa, regenerar la sesión
             $request->session()->regenerate();
-    
+
             // Redirigir al usuario a la página de reportes
             return redirect()->route('inicio');
         }
-    
+
         // Si no se pudo autenticar, regresar con un mensaje de error
         return back()->withErrors([
             'dni' => 'Las credenciales no coinciden con nuestros registros.',
         ]);
     }
 
-    
+
     // Muestra el formulario de registro
     public function showRegisterForm()
     {
@@ -87,7 +88,7 @@ class AuthController extends Controller
             'apellido1' => 'required|string|max:255',
             'apellido2' => 'required|string|max:255',
             'dni' => 'required|string|min:9|max:9|unique:usuarios',
-            'email' => 'required|string|email|max:255:usuarios', 
+            'email' => 'required|string|email|max:255:usuarios',
             'localidad' => 'required|string|max:255',
             'telefono' => 'required|integer|digits_between:9,15',
             'sexo' => 'required|in:Hombre,Mujer',
@@ -96,7 +97,7 @@ class AuthController extends Controller
             'password' => 'required|string|confirmed|min:8',
 
         ]);
-    
+
         // Si la validación falla, redirigimos de vuelta con errores
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
@@ -104,7 +105,7 @@ class AuthController extends Controller
 
         $categoria = $this->calcularCategoria($request->fecha_nacimiento);
 
-    
+
         // Crear el nuevo usuario y cifrar la contraseña antes de guardarla
         $usuario = Usuario::create([
             'name' => $request->name,
@@ -119,7 +120,7 @@ class AuthController extends Controller
             'email' => $request->email,
             'categoria' => $categoria,
             'password' => bcrypt($request->password), // Asegúrate de cifrar la contraseña
-            
+
         ]);
 
         $usuario->notify(new UsuarioRegistrado($usuario));
@@ -127,12 +128,12 @@ class AuthController extends Controller
         // Notificar a la empresa
         $correoEmpresa = config('mail.from.address', 'correyvuela.contacto@gmail.com');
         Notification::route('mail', $correoEmpresa)->notify(new UsuarioRegistrado($usuario));
-    
 
-    
+
+
         return redirect()->route('login')->with('success', 'Te has registrado correctamente. Ahora puedes iniciar sesión.');
     }
-    
+
     public function logout()
     {
         Auth::logout();  // Cerrar la sesión
@@ -167,13 +168,13 @@ public function store(Request $request)
         $categoria = $this->calcularCategoria($validatedData['fecha_nacimiento']);
 
 
-    
+
     // Crear el usuario
     $user = new Usuario();
     $user->name = $validatedData['name'];
     $user->apellido1 = $validatedData['apellido1'];
     $user->apellido2 = $validatedData['apellido2'];
-    $user->dni = $validatedData['dni'];    
+    $user->dni = $validatedData['dni'];
     $user->email = $validatedData['email'];
     $user->localidad = $validatedData['localidad'];
     $user->telefono = $validatedData['telefono'];
@@ -183,7 +184,7 @@ public function store(Request $request)
     $user->categoria = $categoria;
     $user->password = bcrypt($validatedData['password']);
 
-    
+
 
     // Guardar el nuevo usuario
     $user->save();
@@ -211,6 +212,54 @@ public function galeria()
 }
 
 
+    public function menuUsuario()
+    {
+        $usuario = Auth::user();
+        $carreras = $usuario->carreras ?? []; // Asegúrate de tener la relación en el modelo Usuario
+        return view('menuUsuario', compact('usuario', 'carreras'));
+    }
+
+// Actualizar datos del usuario
+    public function actualizarPerfil(Request $request)
+    {
+        $usuario = Auth::user();
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'apellido1' => 'required|string|max:255',
+            'apellido2' => 'required|string|max:255',
+            'localidad' => 'required|string|max:255',
+            'telefono' => 'required|integer|digits_between:9,15',
+            'email' => 'required|email|max:255|unique:usuarios,email,' . $usuario->id,
+        ]);
+
+        $usuario->update($request->only([
+            'name', 'apellido1', 'apellido2', 'localidad', 'telefono', 'email'
+        ]));
+
+        return back()->with('success', 'Perfil actualizado correctamente.');
+    }
+
+// Subir o actualizar foto de perfil
+    public function actualizarFoto(Request $request)
+    {
+        $usuario = Auth::user();
+
+        $request->validate([
+            'foto_perfil' => 'required|image|max:2048',
+        ]);
+
+        // Borrar foto anterior si existe
+        if ($usuario->foto_perfil) {
+            Storage::disk('public')->delete($usuario->foto_perfil);
+        }
+
+        $path = $request->file('foto_perfil')->store('fotos_perfil', 'public');
+        $usuario->foto_perfil = $path;
+        $usuario->save();
+
+        return back()->with('success', 'Foto de perfil actualizada.');
+    }
 
 
 }

@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar inscripción</title>
     <link rel="shortcut icon" href="{{ asset('LogoCorreYVuela.png') }}" type="image/png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
 <body>
@@ -34,6 +36,12 @@
                     </form>
                 @endif
             @endauth
+
+            <a href="{{ url('menuUsuario') }}" class="btn-logout btn-zona-privada" style="margin-top: 10px;">
+                <i class="fas fa-user-circle"></i>
+                Zona privada
+                <span class="tooltip-text">Ver tu perfil y datos</span>
+            </a>
             <form action="{{ route('logout') }}" method="POST" class="logout">
                 @csrf
                 <button type="submit" class="btn-logout">

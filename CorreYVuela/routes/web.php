@@ -11,7 +11,7 @@ use App\Http\Controllers\GaleriaController;
 
 
 Route::get('/', function () {
-    return redirect()->route('login'); 
+    return redirect()->route('login');
 });
 
 
@@ -32,7 +32,7 @@ Route::post('/usuarios', [AuthController::class, 'store'])->name('auth.store');
 
 Route::get('/inicio', [AuthController::class, 'index'])->name('inicio');
 
-Route::get('/pruebas', [CarreraController::class, 'index'])->name('pruebas');   
+Route::get('/pruebas', [CarreraController::class, 'index'])->name('pruebas');
 
 
 Route::get('/registrarCarrera', [CarreraController::class, 'create'])->name('registrarCarrera');
@@ -55,3 +55,6 @@ Route::get('/galeria', [GaleriaController::class, 'index'])->name('galeria.index
 Route::get('/galeria/create', [GaleriaController::class, 'create'])->name('galeria.create');
 Route::post('/galeria', [GaleriaController::class, 'store'])->name('galeria.store');
 
+Route::get('/menuUsuario', [AuthController::class, 'menuUsuario'])->name('menuUsuario');
+Route::post('/menuUsuario/actualizar', [AuthController::class, 'actualizarPerfil'])->name('auth.actualizarPerfil');
+Route::post('/menuUsuario/foto', [AuthController::class, 'actualizarFoto'])->name('auth.actualizarFoto');

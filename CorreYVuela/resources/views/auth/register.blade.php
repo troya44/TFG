@@ -114,6 +114,17 @@
 </head>
 <body>
 
+<div class="slideshow-container">
+    <div class="mySlides active">
+        <img src="{{ asset('images/fotoCorriendo.jpg') }}" alt="Fondo 1">
+    </div>
+    <div class="mySlides">
+        <img src="{{ asset('images/fotoBici1.jpg') }}" alt="Fondo 2">
+    </div>
+    <div class="mySlides">
+        <img src="{{ asset('images/fotoSenderismo.webp') }}" alt="Fondo 3">
+    </div>
+</div>
 <div class="divlog">
 
     <img src="{{ asset('LogoCorreYVuela.png') }}" alt="Logo" class="logo">
@@ -145,13 +156,13 @@
             <input type="text" name="dni" id="dni">
             @error('dni') <span>{{ $message }}</span> @enderror
         </div>
-        
+
         <div class="form-group">
             <label for="localidad">Localidad:</label>
             <input type="text" name="localidad" id="localidad">
             @error('localidad') <span>{{ $message }}</span> @enderror
         </div>
-        
+
         <div class="form-group">
             <label for="email">Correo electrónico:</label>
             <input type="email" name="email" id="email" required>
@@ -192,9 +203,27 @@
        <button type="submit">Registrarme</button>
     </form>
 
-    <p>¿Ya tienes una cuenta? 
+    <p>¿Ya tienes una cuenta?
        <a href="{{ route('login') }}">Inicia sesión aquí</a></p>
 
 </div>
+
+<!-- Carrusel JS -->
+<script>
+    let slideIndex = 0;
+    const slides = document.querySelectorAll('.mySlides');
+    function showSlides() {
+        slides.forEach((slide, i) => {
+            slide.classList.remove('active');
+        });
+        slideIndex++;
+        if (slideIndex > slides.length) {slideIndex = 1}
+        slides[slideIndex-1].classList.add('active');
+        setTimeout(showSlides, 8000); // Cambia cada 4 segundos
+    }
+    if (slides.length > 1) {
+        setTimeout(showSlides, 8000);
+    }
+</script>
 </body>
 </html>

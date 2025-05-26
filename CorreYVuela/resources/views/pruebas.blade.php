@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link rel="shortcut icon" href="{{ asset('LogoCorreYVuela.png') }}" type="image/png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <title>Pruebas</title>
     <style>
     .carreras-container {
@@ -110,8 +112,14 @@
                 @auth
                     @if(Auth::user()->admin)
                         Bienvenido, administrador {{ Auth::user()->name }}
+                        <img class="perfil-usuario-header"
+                             src="{{ Auth::user()->foto_perfil ? asset('storage/' . Auth::user()->foto_perfil) : asset('images/default-profile.png') }}"
+                             alt="Foto de perfil">
                     @else
                         Bienvenido, {{ Auth::user()->name }}
+                        <img class="perfil-usuario-header"
+                             src="{{ Auth::user()->foto_perfil ? asset('storage/' . Auth::user()->foto_perfil) : asset('images/default-profile.png') }}"
+                             alt="Foto de perfil">
                     @endif
                 @endauth
             </p>
@@ -125,6 +133,12 @@
                     </form>
                 @endif
             @endauth
+
+            <a href="{{ url('menuUsuario') }}" class="btn-logout btn-zona-privada" style="margin-top: 10px;">
+                <i class="fas fa-user-circle"></i>
+                Zona privada
+                <span class="tooltip-text">Ver tu perfil y datos</span>
+            </a>
             <form action="{{ route('logout') }}" method="POST" class="logout">
                 @csrf
                 <button type="submit" class="btn-logout">
@@ -159,7 +173,7 @@
                     </button>
                 </form>
             </div>
-            
+
         @empty
             <h2 style="text-align:center; margin-top:2rem;">Actualmente no tenemos ninguna prueba por realizar</h2>
         @endforelse
