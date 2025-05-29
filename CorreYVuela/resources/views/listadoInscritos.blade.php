@@ -257,7 +257,7 @@
         @endif
 
         <form action="{{ route('pruebas') }}" method="GET" style="display:inline;">
-            <button type="submit" class="btn-admin" style="margin-top:1rem;">
+            <button type="submit" class="btn-admin" style="margin-top:1rem; color: #2d3540;">
                 Volver
             </button>
         </form>

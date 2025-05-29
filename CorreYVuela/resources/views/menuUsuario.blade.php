@@ -60,7 +60,7 @@
             @error('foto_perfil')
             <div class="text-danger">{{ $message }}</div>
             @enderror
-            <button type="submit" class="btn btn-primary btn-sm mt-2">Actualizar foto</button>
+            <button type="submit" class="btn btn-primary btn-sm mt-2" style="color: #2d3540; font-size: 16px; font-weight: 800;">Actualizar foto</button>
         </form>
     </section>
 
@@ -106,7 +106,7 @@
                 @error('email')<small class="text-danger">{{ $message }}</small>@enderror
             </div>
 
-            <button type="submit" class="btn btn-success">Guardar cambios</button>
+            <button type="submit" class="btn btn-success" style="color: #2d3540; font-size: 16px; font-weight: 800;">Guardar cambios</button>
         </form>
     </section>
 

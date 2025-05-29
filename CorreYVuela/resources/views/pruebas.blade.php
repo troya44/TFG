@@ -168,7 +168,7 @@
                 <p class="carrera-info"><strong>Distancia:</strong> {{ $carrera->distancia }} Km</p>
                 <p class="carrera-info"><strong>Estado:</strong> {{ ucfirst($carrera->estado) }}</p>
                 <form action="{{ route('informacionPrueba', $carrera->id) }}" method="GET" style="display:inline;">
-                    <button type="submit" class="btn-info">
+                    <button type="submit" class="btn-info" style="color: #2d3540">
                         Información de la prueba
                     </button>
                 </form>
