@@ -13,7 +13,7 @@
 <body>
     <header class="navbar">
         <div class="navbar-logo">
-            <a href="{{ route('inicio') }}">
+            <a href="{{ route('inicio') }}" style="text-decoration: none; color: inherit;">
                 <h1>Corre Y Vuela</h1>
             </a>
         </div>
@@ -42,7 +42,8 @@
             <form action="{{ route('logout') }}" method="POST" class="logout">
                 @csrf
                 <button type="submit" class="btn-logout">
-                    <span class="tooltip">Cerrar sesión</span>
+                    Cerrar sesión
+                    <span class="tooltip-text">Cerrar sesión</span>
                 </button>
             </form>
         </nav>

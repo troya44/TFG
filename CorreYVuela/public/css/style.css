@@ -7,14 +7,14 @@
 
 body {
     font-family: 'Segoe UI', Verdana, sans-serif;
-    background: linear-gradient(135deg, #f8f9fb 0%, #f3f4f7 100%);
+    background: linear-gradient(135deg, #f9f6f2 0%, #f5e6b2 100%);
     min-height: 100vh;
     color: #2d3540;
 }
 
 /* Header navbar */
 .navbar {
-    background: linear-gradient(90deg, #f3f4f7 0%, #e9ecf2 100%);
+    background: linear-gradient(90deg, #f5e6b2 0%, #f9f6f2 100%);
     color: #2d3540;
     padding: 1.2rem 0;
     box-shadow: 0 2px 10px rgba(44, 54, 64, 0.07);
@@ -27,23 +27,21 @@ body {
     animation: slideDown 0.7s cubic-bezier(.68,-0.55,.27,1.55);
 }
 
-@keyframes slideDown {
-    0% { transform: translateY(-70px); opacity: 0; }
-    100% { transform: translateY(0); opacity: 1; }
-}
-
 .navbar-logo h1 {
     margin-left: 2rem;
     font-size: 2.1rem;
     letter-spacing: 2px;
-    color: #23395d;
-    text-shadow: 1px 1px 8px #f3f4f7;
+    color: #2d3540;
+    text-shadow: 1px 1px 8px #f5e6b2;
     transition: color 0.3s;
     font-weight: 700;
 }
-
+.navbar-logo a {
+    text-decoration: none;
+    color: inherit;
+}
 .navbar-logo h1:hover {
-    color: #bfa76a;
+    color: #e2c275;
 }
 
 .navbar-links {
@@ -56,28 +54,28 @@ body {
 .bienvenida {
     font-size: 1.1rem;
     margin-right: 1.5rem;
-    color: #23395d;
+    color: #2d3540;
     font-weight: 500;
     font-style: italic;
 }
 
 .logout .btn-logout {
-    background: linear-gradient(90deg, #f8f5ec 0%, #e7e2d9 100%);
+    background: linear-gradient(90deg, #f9f6f2 0%, #f5e6b2 100%);
     border: none;
-    color: #23395d;
+    color: #2d3540;
     padding: 0.5rem 1.2rem;
     border-radius: 25px;
     font-size: 1rem;
     cursor: pointer;
     transition: background 0.3s, transform 0.2s;
     position: relative;
-    box-shadow: 0 2px 6px rgba(191, 167, 106, 0.09);
+    box-shadow: 0 2px 6px rgba(226, 194, 117, 0.09);
     font-weight: bold;
-    border-bottom: 2px solid #bfa76a;
+    border-bottom: 2px solid #e2c275;
 }
 
 .logout .btn-logout:hover {
-    background: linear-gradient(90deg, #e7e2d9 0%, #f8f5ec 100%);
+    background: linear-gradient(90deg, #f5e6b2 0%, #f9f6f2 100%);
     transform: scale(1.05);
 }
 
@@ -86,8 +84,8 @@ body {
     position: absolute;
     top: -30px;
     left: 0;
-    background: #f3f4f7;
-    color: #23395d;
+    background: #f5e6b2;
+    color: #2d3540;
     border-radius: 5px;
     padding: 2px 8px;
     font-size: 0.9rem;
@@ -109,11 +107,6 @@ body {
     animation: fadeIn 1.2s;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(40px);}
-    to { opacity: 1; transform: translateY(0);}
-}
-
 .logo {
     display: block;
     margin: 0 auto 1.5rem auto;
@@ -127,13 +120,13 @@ h1, h3 {
 }
 
 h1 {
-    color: #23395d;
+    color: #2d3540;
     font-weight: 700;
     letter-spacing: 1px;
 }
 
 h3 {
-    color: #bfa76a;
+    color: #e2c275;
     font-weight: 500;
 }
 
@@ -144,7 +137,7 @@ h3 {
 label {
     display: block;
     font-weight: 600;
-    color: #23395d;
+    color: #2d3540;
     margin-bottom: 0.3rem;
     letter-spacing: 0.5px;
 }
@@ -153,52 +146,52 @@ input, select, button {
     width: 100%;
     padding: 0.7rem;
     border-radius: 7px;
-    border: 1px solid #e9ecf2;
+    border: 1px solid #f5e6b2;
     font-size: 1rem;
     margin-top: 0.2rem;
     transition: border 0.2s, box-shadow 0.2s;
-    background-color: #f8f9fb;
+    background-color: #f9f6f2;
     color: #2d3540;
 }
 
 input::placeholder {
-    color: #bfa76a;
+    color: #e2c275;
     font-style: italic;
 }
 
 input:focus, select:focus {
-    border-color: #bfa76a;
+    border-color: #e2c275;
     outline: none;
-    box-shadow: 0 0 6px #bfa76a;
+    box-shadow: 0 0 6px #e2c275;
 }
 
 button,
 .form-inscripcion-box button[type="submit"] {
-    background: linear-gradient(90deg, #f8f5ec 0%, #e7e2d9 100%);
-    color: #23395d;
+    background: linear-gradient(90deg, #f9f6f2 0%, #f5e6b2 100%);
+    color: #2d3540;
     font-weight: bold;
     cursor: pointer;
     border: none;
     margin-top: 0.5rem;
     transition: background 0.3s, transform 0.2s;
-    box-shadow: 0 4px 10px rgba(191, 167, 106, 0.13);
-    border-bottom: 2px solid #bfa76a;
+    box-shadow: 0 4px 10px rgba(226, 194, 117, 0.13);
+    border-bottom: 2px solid #e2c275;
 }
 
 button:hover,
 .form-inscripcion-box button[type="submit"]:hover {
-    background: linear-gradient(90deg, #e7e2d9 0%, #f8f5ec 100%);
+    background: linear-gradient(90deg, #f5e6b2 0%, #f9f6f2 100%);
     transform: scale(1.03);
 }
 
 a {
-    color: #23395d;
+    color: #2d3540;
     text-decoration: none;
     transition: color 0.2s;
 }
 
 a:hover {
-    color: #bfa76a;
+    color: #e2c275;
     text-decoration: underline;
 }
 
@@ -224,13 +217,9 @@ p {
 }
 
 /* Animación de entrada suave */
-@keyframes fadein-section {
+@keyframes fadeIn {
     from { opacity: 0; transform: translateY(40px);}
     to { opacity: 1; transform: translateY(0);}
-}
-
-.animate-fadein {
-    animation: fadein-section 1.1s cubic-bezier(.68,-0.55,.27,1.55) both;
 }
 
 .info-section {
@@ -248,8 +237,8 @@ p {
     visibility: hidden;
     opacity: 0;
     width: 140px;
-    background-color: #23395d;
-    color: #fff;
+    background-color: #e2c275;
+    color: #2d3540;
     text-align: center;
     border-radius: 6px;
     padding: 6px 0;
@@ -262,8 +251,8 @@ p {
     transition: opacity 0.3s;
     pointer-events: none;
 }
-
-.tooltip-btn:hover .tooltip-text {
+.tooltip-btn:hover .tooltip-text,
+.btn-logout:hover .tooltip-text {
     visibility: visible;
     opacity: 1;
 }
@@ -272,20 +261,21 @@ textarea {
     width: 100%;
     min-height: 80px;
     border-radius: 7px;
-    border: 1px solid #e9ecf2;
+    border: 1px solid #f5e6b2;
     padding: 0.7rem;
     font-size: 1rem;
     resize: vertical;
-    background-color: #f8f9fb;
+    background-color: #f9f6f2;
     color: #2d3540;
     transition: border 0.2s, box-shadow 0.2s;
 }
 textarea:focus {
-    border-color: #bfa76a;
+    border-color: #e2c275;
     outline: none;
-    box-shadow: 0 0 6px #bfa76a;
+    box-shadow: 0 0 6px #e2c275;
 }
 
+/* Tablas */
 .tabla-inscritos {
     width: 100%;
     border-collapse: separate;
@@ -300,24 +290,24 @@ textarea:focus {
 .tabla-inscritos th, .tabla-inscritos td {
     padding: 0.8rem 0.6rem;
     text-align: left;
-    border-bottom: 1px solid #e7e2d9;
+    border-bottom: 1px solid #f5e6b2;
 }
 .tabla-inscritos th {
-    background: #f3f4f7;
-    color: #23395d;
+    background: #f9f6f2;
+    color: #2d3540;
     font-weight: 600;
     font-size: 1.03rem;
-    border-bottom: 2px solid #bfa76a;
+    border-bottom: 2px solid #e2c275;
 }
 .tabla-inscritos tr:last-child td {
     border-bottom: none;
 }
 .tabla-inscritos tr {
-    background: rgba(245,247,250,0.93);
+    background: rgba(249,246,242,0.93);
     transition: background 0.2s;
 }
 .tabla-inscritos tr:hover {
-    background: #e9ecf2;
+    background: #f5e6b2;
 }
 @media (max-width: 600px) {
     .tabla-inscritos th, .tabla-inscritos td {
@@ -337,11 +327,11 @@ textarea:focus {
     flex-direction: column;
     align-items: stretch;
     animation: fadeIn 1s;
-    border: 1px solid #e9ecf2;
+    border: 1px solid #f5e6b2;
 }
 .form-inscripcion-box label {
     margin-bottom: 0.3rem;
-    color: #23395d;
+    color: #2d3540;
     font-weight: 600;
     letter-spacing: 0.5px;
 }
@@ -350,20 +340,20 @@ textarea:focus {
     margin-bottom: 1rem;
     padding: 0.7rem;
     border-radius: 7px;
-    border: 1px solid #e9ecf2;
-    background-color: #f8f9fb;
+    border: 1px solid #f5e6b2;
+    background-color: #f9f6f2;
     color: #2d3540;
     font-size: 1rem;
     transition: border 0.2s, box-shadow 0.2s;
 }
 .form-inscripcion-box input:focus {
-    border-color: #bfa76a;
+    border-color: #e2c275;
     outline: none;
-    box-shadow: 0 0 6px #bfa76a;
+    box-shadow: 0 0 6px #e2c275;
 }
 .form-inscripcion-box button[type="submit"] {
-    background: linear-gradient(90deg, #f8f5ec 0%, #e7e2d9 100%);
-    color: #23395d;
+    background: linear-gradient(90deg, #f9f6f2 0%, #f5e6b2 100%);
+    color: #2d3540;
     font-weight: bold;
     border: none;
     border-radius: 7px;
@@ -372,11 +362,11 @@ textarea:focus {
     margin-top: 0.8rem;
     cursor: pointer;
     transition: background 0.3s, transform 0.2s;
-    box-shadow: 0 4px 10px rgba(191, 167, 106, 0.13);
-    border-bottom: 2px solid #bfa76a;
+    box-shadow: 0 4px 10px rgba(226, 194, 117, 0.13);
+    border-bottom: 2px solid #e2c275;
 }
 .form-inscripcion-box button[type="submit"]:hover {
-    background: linear-gradient(90deg, #e7e2d9 0%, #f8f5ec 100%);
+    background: linear-gradient(90deg, #f5e6b2 0%, #f9f6f2 100%);
     transform: scale(1.03);
 }
 @media (max-width: 600px) {
@@ -399,24 +389,23 @@ textarea:focus {
 }
 
 .btn-logout {
-    background: linear-gradient(90deg, #f8f5ec 0%, #e7e2d9 100%);
+    background: linear-gradient(90deg, #f9f6f2 0%, #f5e6b2 100%);
     border: none;
-    color: #23395d;
+    color: #2d3540;
     padding: 0.5rem 1.2rem;
     border-radius: 25px;
     font-size: 1rem;
     cursor: pointer;
     transition: background 0.3s, transform 0.2s;
     position: relative;
-    box-shadow: 0 2px 6px rgba(191, 167, 106, 0.09);
+    box-shadow: 0 2px 6px rgba(226, 194, 117, 0.09);
     font-weight: bold;
-    border-bottom: 2px solid #bfa76a;
+    border-bottom: 2px solid #e2c275;
     display: inline-block;
     vertical-align: middle;
 }
-
 .btn-logout:hover {
-    background: linear-gradient(90deg, #e7e2d9 0%, #f8f5ec 100%);
+    background: linear-gradient(90deg, #f5e6b2 0%, #f9f6f2 100%);
     transform: scale(1.05);
 }
 
@@ -425,8 +414,8 @@ textarea:focus {
     visibility: hidden;
     opacity: 0;
     width: 140px;
-    background-color: #23395d;
-    color: #fff;
+    background-color: #e2c275;
+    color: #2d3540;
     text-align: center;
     border-radius: 6px;
     padding: 6px 0;
@@ -443,5 +432,3 @@ textarea:focus {
     visibility: visible;
     opacity: 1;
 }
-
-

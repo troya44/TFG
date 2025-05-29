@@ -103,7 +103,7 @@
 <body>
     <header class="navbar">
         <div class="navbar-logo">
-            <a href="{{ route('inicio') }}">
+            <a href="{{ route('inicio') }}" style="text-decoration: none; color: inherit;">
                 <h1>Corre Y Vuela</h1>
             </a>
         </div>

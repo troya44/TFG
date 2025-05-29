@@ -55,7 +55,6 @@
                 <span class="tooltip-text">Ver tu perfil y datos</span>
             </a>
 
-            <a href="menuUsuario" class="logout">Zona privada</a>
             <form action="{{ route('logout') }}" method="POST" class="logout">
                 @csrf
                 <button type="submit" class="btn-logout">
