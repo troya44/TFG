@@ -200,7 +200,7 @@
             <input type="password" name="password_confirmation" id="password_confirmation" required>
         </div>
         <div>
-       <button type="submit">Registrarme</button>
+       <button type="submit" style="color: #2d3540; font-size: 16px; font-weight: 600;">Registrarme</button>
     </form>
 
     <p>¿Ya tienes una cuenta?

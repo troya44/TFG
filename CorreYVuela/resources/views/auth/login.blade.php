@@ -156,7 +156,7 @@
             </div>
             <!-- Botón de envío -->
             <div class="form-group">
-                <button type="submit">Iniciar sesión</button>
+                <button type="submit" style="color: #2d3540; font-size: 16px; font-weight: 600;">Iniciar sesión</button>
             </div>
         </form>
         <!-- Enlace para registro -->
