@@ -8,6 +8,8 @@
   <link href="{{ asset('css/style.css') }}" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
+/* Para que el contenido quede encima */
+
     /* Estilos para la sección de artículos */
     .blog-section {
       max-width: 1100px;
@@ -145,6 +147,9 @@
       transform: translateX(-50%);
       z-index: 1000;
     }
+
+
+
   </style>
 </head>
 <body>
@@ -208,6 +213,7 @@
     </ul>
   </div>
 
+  
   <main>
     <!-- HERO SECTION -->
     <section class="main-content animate-fadein" id="inicio">

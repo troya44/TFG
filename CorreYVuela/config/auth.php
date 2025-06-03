@@ -91,13 +91,14 @@ return [
     */
 
     'passwords' => [
-        'users' => [
-            'provider' => 'users',
-            'table' => env('AUTH_PASSWORD_RESET_TOKEN_TABLE', 'password_reset_tokens'),
-            'expire' => 60,
-            'throttle' => 60,
-        ],
+    'usuarios' => [
+        'provider' => 'usuarios', // Este es el provider que ya tienes
+        'table' => 'password_resets', // Usa la misma tabla, no hay problema
+        'expire' => 60,
+        'throttle' => 60,
     ],
+],
+
 
     /*
     |--------------------------------------------------------------------------

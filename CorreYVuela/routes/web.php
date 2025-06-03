@@ -1,4 +1,5 @@
 <?php
+
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ReporteController;
 use Illuminate\Support\Facades\Auth;
@@ -8,6 +9,9 @@ use App\Http\Controllers\ArticuloController;
 use App\Http\Controllers\CarreraController;
 use App\Http\Controllers\InscripcionesController;
 use App\Http\Controllers\GaleriaController;
+
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\ResetPasswordController;
 
 
 Route::get('/', function () {
@@ -58,3 +62,14 @@ Route::post('/galeria', [GaleriaController::class, 'store'])->name('galeria.stor
 Route::get('/menuUsuario', [AuthController::class, 'menuUsuario'])->name('menuUsuario');
 Route::post('/menuUsuario/actualizar', [AuthController::class, 'actualizarPerfil'])->name('auth.actualizarPerfil');
 Route::post('/menuUsuario/foto', [AuthController::class, 'actualizarFoto'])->name('auth.actualizarFoto');
+
+
+// Mostrar formulario para solicitar el enlace de reseteo
+Route::get('forgot-password', [AuthController::class, 'showForgotPasswordForm'])->name('password.request');
+// Procesar el envío del email
+Route::post('forgot-password', [AuthController::class, 'sendResetLinkEmail'])->name('password.email');
+
+// Mostrar formulario para cambiar la contraseña
+Route::get('reset-password/{token}', [AuthController::class, 'showResetPasswordForm'])->name('password.reset');
+// Procesar el cambio de contraseña
+Route::post('reset-password', [AuthController::class, 'resetPassword'])->name('password.update');
