@@ -10,18 +10,18 @@
     <link rel="shortcut icon" href="{{ asset('LogoCorreYVuela.png') }}" type="image/png">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <style>
-.carrera-cartel {
-    display: block;
-    margin: 2rem auto 1.5rem auto;
-    max-width: 450px;
-    max-height: 450px;
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-    object-fit: contain;
-}
-</style>
+        .carrera-cartel {
+            display: block;
+            margin: 2rem auto 1.5rem auto;
+            max-width: 450px;
+            max-height: 450px;
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+            object-fit: contain;
+        }
+    </style>
 
 </head>
 
@@ -38,13 +38,13 @@
                     @if(Auth::user()->admin)
                         Bienvenido, administrador {{ Auth::user()->name }}
                         <img class="perfil-usuario-header"
-                             src="{{ Auth::user()->foto_perfil ? asset('storage/' . Auth::user()->foto_perfil) : asset('images/default-profile.png') }}"
-                             alt="Foto de perfil">
+                            src="{{ Auth::user()->foto_perfil ? asset('storage/' . Auth::user()->foto_perfil) : asset('images/default-profile.png') }}"
+                            alt="Foto de perfil">
                     @else
                         Bienvenido, {{ Auth::user()->name }}
                         <img class="perfil-usuario-header"
-                             src="{{ Auth::user()->foto_perfil ? asset('storage/' . Auth::user()->foto_perfil) : asset('images/default-profile.png') }}"
-                             alt="Foto de perfil">
+                            src="{{ Auth::user()->foto_perfil ? asset('storage/' . Auth::user()->foto_perfil) : asset('images/default-profile.png') }}"
+                            alt="Foto de perfil">
                     @endif
                 @endauth
             </p>
@@ -75,27 +75,24 @@
     <p>Distancia: {{ $carrera->distancia }} Km</p>
     <p>Estado: {{ $carrera->estado }}</p>
 
-    <!-- Botón para ver listado de inscritos -->
     <form action="{{ route('listadoInscritos', $carrera->id) }}" method="GET" style="display:inline;">
         <button type="submit" class="btn-listado">
             Ver listado de inscritos
         </button>
     </form>
 
-    <!-- Botón para inscribirse -->
     <button type="button" class="btn-inscribirme"
         onclick="document.getElementById('form-inscripcion').style.display='flex'">
         Inscribirme
     </button>
 
     <form action="{{ route('pruebas') }}" method="GET" style="display:inline;">
-            <button type="submit" class="btn-admin tooltip-btn" style="margin-top:1rem; position:relative;">
-                <span class="tooltip-text">Volver</span>
-                Volver
-            </button>
-        </form>
+        <button type="submit" class="btn-admin tooltip-btn" style="margin-top:1rem; position:relative;">
+            <span class="tooltip-text">Volver</span>
+            Volver
+        </button>
+    </form>
 
-    <!-- Formulario de inscripción oculto por defecto -->
     <div id="form-inscripcion" class="form-inscripcion-box" style="display:none;">
         <form action="{{ route('inscribirse', $carrera->id) }}" method="POST" style="width:100%;">
             @csrf
@@ -118,7 +115,6 @@
                 <option value="Ciclismo">Ciclismo</option>
                 <option value="Trail">Trail</option>
             </select>
-            <!-- Añade aquí más campos si lo necesitas -->
             <button type="submit">Confirmar inscripción</button>
         </form>
         <form action="{{ route('pruebas') }}" method="GET" style="display:inline;">

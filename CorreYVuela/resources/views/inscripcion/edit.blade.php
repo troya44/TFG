@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
 
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
+
 <body>
     <header class="navbar">
         <div class="navbar-logo">
@@ -53,9 +55,9 @@
     </header>
 
     <div class="main-content animate-fadein">
-        <h2 style="text-align:center; color:#8d7964; margin-bottom:1.5rem;">Editar inscripción en <span style="color:#bfae9c;">{{ $carrera->nombre }}</span></h2>
+        <h2 style="text-align:center; color:#8d7964; margin-bottom:1.5rem;">Editar inscripción en <span
+                style="color:#bfae9c;">{{ $carrera->nombre }}</span></h2>
 
-        {{-- Mostrar errores de validación --}}
         @if ($errors->any())
             <div style="color: #c0392b; margin-bottom: 1rem; text-align:center;">
                 <ul style="list-style:none;">
@@ -66,8 +68,8 @@
             </div>
         @endif
 
-        {{-- Formulario de edición --}}
-        <form action="{{ route('inscripcion.update', [$carrera->id, $usuario->id]) }}" method="POST" class="form-inscripcion-box">
+        <form action="{{ route('inscripcion.update', [$carrera->id, $usuario->id]) }}" method="POST"
+            class="form-inscripcion-box">
             @csrf
             @method('PUT')
             <div class="form-group">
@@ -92,7 +94,8 @@
             </div>
             <div class="form-group">
                 <label>Fecha de Nacimiento</label>
-                <input type="date" name="fecha_nacimiento" value="{{ old('fecha_nacimiento', $usuario->fecha_nacimiento) }}" required>
+                <input type="date" name="fecha_nacimiento"
+                    value="{{ old('fecha_nacimiento', $usuario->fecha_nacimiento) }}" required>
             </div>
             <div class="form-group">
                 <label for="modalidad">Modalidad:</label>
@@ -105,13 +108,14 @@
             </div>
             <div class="form-group">
                 <label>Categoría:</label>
-                <input type="text" name="categoria" value="{{ old('categoria', $inscripcion->pivot->categoria ?? 'Sin categoría') }}" readonly>
+                <input type="text" name="categoria"
+                    value="{{ old('categoria', $inscripcion->pivot->categoria ?? 'Sin categoría') }}" readonly>
             </div>
             <button type="submit" class="btn-admin">Guardar Cambios</button>
         </form>
 
-        {{-- Formulario para borrar inscripción --}}
-        <form action="{{ route('inscripcion.destroy', [$carrera->id, $usuario->id]) }}" method="POST" class="form-inscripcion-box" style="margin-top: 1.5rem;">
+        <form action="{{ route('inscripcion.destroy', [$carrera->id, $usuario->id]) }}" method="POST"
+            class="form-inscripcion-box" style="margin-top: 1.5rem;">
             @csrf
             @method('DELETE')
             <button type="submit" class="btn-admin" style="background-color: #c0392b;"
@@ -127,4 +131,5 @@
         </form>
     </div>
 </body>
+
 </html>

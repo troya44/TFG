@@ -10,23 +10,23 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-  display: flex;
-  justify-content: center; /* Centra horizontalmente */
-  align-items: center;     /* Centra verticalmente */
-  height: 100vh;           /* Para que tome toda la altura visible */
-  margin: 0;               /* Quitar margenes predeterminados */
-  position: relative;      /* Para que el slideshow quede debajo */
-  z-index: 1;              /* Para que esté encima del slideshow */
-}
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            position: relative;
+            z-index: 1;
+        }
 
-.main-content {
-  z-index: 10;             /* Para que esté siempre encima del slideshow */
-  background-color: rgba(255, 255, 255, 0.85); /* Fondo blanco semitransparente para legibilidad */
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.3);
-}
-        /* Carrusel de fondo */
+        .main-content {
+            z-index: 10;
+            background-color: rgba(255, 255, 255, 0.85);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        }
+
         .slideshow-container {
             position: fixed;
             top: 0;
@@ -71,51 +71,39 @@
     </div>
 
     <div class="main-content" style="max-width: 400px;">
-    <h1 style="margin-bottom: 1.5rem;">Restablecer contraseña</h1>
+        <h1 style="margin-bottom: 1.5rem;">Restablecer contraseña</h1>
 
-    <form action="{{ route('password.update') }}" method="POST" autocomplete="off">
-        @csrf
-        <input type="hidden" name="token" value="{{ $token }}">
-        <input type="hidden" name="email" value="{{ request('email', $email ?? '') }}">
+        <form action="{{ route('password.update') }}" method="POST" autocomplete="off">
+            @csrf
+            <input type="hidden" name="token" value="{{ $token }}">
+            <input type="hidden" name="email" value="{{ request('email', $email ?? '') }}">
 
-        <div class="form-group">
-            <label for="password">Nueva contraseña:</label>
-            <input
-                type="password"
-                name="password"
-                id="password"
-                required
-                placeholder="Introduce tu nueva contraseña"
-                autocomplete="new-password"
-            >
-            @error('password')
-                <div style="color: #c0392b; font-size: 0.97em; margin-top: 0.3em;">{{ $message }}</div>
-            @enderror
-        </div>
+            <div class="form-group">
+                <label for="password">Nueva contraseña:</label>
+                <input type="password" name="password" id="password" required
+                    placeholder="Introduce tu nueva contraseña" autocomplete="new-password">
+                @error('password')
+                    <div style="color: #c0392b; font-size: 0.97em; margin-top: 0.3em;">{{ $message }}</div>
+                @enderror
+            </div>
 
-        <div class="form-group">
-            <label for="password_confirmation">Confirmar contraseña:</label>
-            <input
-                type="password"
-                name="password_confirmation"
-                id="password_confirmation"
-                required
-                placeholder="Repite la nueva contraseña"
-                autocomplete="new-password"
-            >
-        </div>
+            <div class="form-group">
+                <label for="password_confirmation">Confirmar contraseña:</label>
+                <input type="password" name="password_confirmation" id="password_confirmation" required
+                    placeholder="Repite la nueva contraseña" autocomplete="new-password">
+            </div>
 
-        <div class="form-group" style="margin-top: 1.2rem;">
-            <button type="submit">
-                Cambiar contraseña
-            </button>
-        </div>
-    </form>
+            <div class="form-group" style="margin-top: 1.2rem;">
+                <button type="submit">
+                    Cambiar contraseña
+                </button>
+            </div>
+        </form>
 
-    <p style="margin-top: 2rem;">
-        <a href="{{ route('login') }}">Volver al inicio de sesión</a>
-    </p>
-</div>
+        <p style="margin-top: 2rem;">
+            <a href="{{ route('login') }}">Volver al inicio de sesión</a>
+        </p>
+    </div>
 
 
 

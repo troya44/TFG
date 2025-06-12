@@ -11,7 +11,7 @@
     <title>Pruebas</title>
     <style>
     .carreras-container {
-    max-width: 900px; /* Más ancho para el contenedor */
+    max-width: 900px; 
     margin: 2rem auto;
     padding: 2rem;
     background: #fff;
@@ -29,23 +29,23 @@
 .carrera-cartel {
     display: block;
     margin: 0 auto 1.5rem auto;
-    max-width: 500px;  /* Imagen más grande */
-    max-height: 600px; /* Altura mayor para no deformar */
-    width: 100%;       /* Para que sea responsiva */
+    max-width: 500px;  
+    max-height: 600px; 
+    width: 100%;       
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-    object-fit: contain; /* Mantiene proporciones sin recortar */
+    object-fit: contain; 
 }
 
 .carrera-title {
     margin-bottom: 0.7rem;
-    font-size: 2.4rem; /* Título más grande */
+    font-size: 2.4rem; 
     color: #1a237e#f5cba7;
 }
 
 .carrera-info {
     margin: 0.3rem 0;
-    font-size: 1.15rem; /* Texto un poco más grande */
+    font-size: 1.15rem; 
     line-height: 1.5;
     max-width: 700px;
     margin-left: auto;

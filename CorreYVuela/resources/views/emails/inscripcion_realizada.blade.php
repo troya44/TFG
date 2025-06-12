@@ -4,6 +4,7 @@
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>{{ $esEmpresa ? 'Nueva inscripción recibida' : '¡Gracias por inscribirte!' }}</title>
@@ -15,45 +16,53 @@
             padding: 0;
             font-family: 'Segoe UI', Arial, sans-serif;
         }
+
         .email-container {
             max-width: 600px;
             margin: 40px auto;
             background: #fff;
             border-radius: 16px;
-            box-shadow: 0 8px 32px rgba(180,150,120,0.10);
+            box-shadow: 0 8px 32px rgba(180, 150, 120, 0.10);
             padding: 0;
             overflow: hidden;
             animation: fadeIn 1s;
         }
+
         .email-header {
             background: linear-gradient(90deg, #bfae9c 50%, #8d7964 100%);
             padding: 24px 0 12px 0;
             text-align: center;
         }
+
         .email-header img {
             max-width: 160px;
             margin-bottom: 6px;
             animation: bounce 2s infinite;
         }
+
         .email-header h1 {
             color: #fff;
             font-size: 2rem;
             margin: 0;
             letter-spacing: 2px;
         }
+
         .email-content {
             padding: 32px 28px 24px 28px;
         }
+
         h2 {
             color: #8d7964;
             font-size: 1.5rem;
             margin-top: 0;
             margin-bottom: 12px;
         }
+
         ul {
             padding: 0 0 0 10px;
             margin: 18px 0 18px 0;
         }
+
         ul li {
             background: #f8f5f0;
             margin-bottom: 8px;
@@ -61,18 +70,21 @@
             padding: 8px 12px;
             color: #4b3d2d;
             font-size: 15px;
-            box-shadow: 0 1px 3px rgba(180,150,120,0.04);
+            box-shadow: 0 1px 3px rgba(180, 150, 120, 0.04);
             animation: slideIn 0.7s;
         }
+
         p {
             color: #3d3326;
             font-size: 16px;
             line-height: 1.6;
         }
+
         .highlight {
             color: #bfae9c;
             font-weight: 600;
         }
+
         .cta {
             display: inline-block;
             background: #8d7964;
@@ -83,12 +95,14 @@
             text-decoration: none;
             font-weight: bold;
             font-size: 16px;
-            box-shadow: 0 2px 8px rgba(180,150,120,0.08);
+            box-shadow: 0 2px 8px rgba(180, 150, 120, 0.08);
             transition: background 0.3s;
         }
+
         .cta:hover {
             background: #bfae9c;
         }
+
         .footer {
             background: #f8f5f0;
             color: #8d7964;
@@ -97,26 +111,55 @@
             font-size: 13px;
             border-top: 1px solid #eee;
         }
+
         /* Animations */
         @keyframes bounce {
-            0%,100% { transform: translateY(0);}
-            50% { transform: translateY(-8px);}
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
         }
+
         @keyframes fadeIn {
-            from { opacity: 0;}
-            to { opacity: 1;}
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
+
         @keyframes slideIn {
-            from { opacity: 0; transform: translateX(-30px);}
-            to { opacity: 1; transform: translateX(0);}
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
+
         /* Responsive */
         @media (max-width: 700px) {
-            .email-container { max-width: 98vw; }
-            .email-content { padding: 18px 8vw 18px 8vw;}
+            .email-container {
+                max-width: 98vw;
+            }
+
+            .email-content {
+                padding: 18px 8vw 18px 8vw;
+            }
         }
     </style>
 </head>
+
 <body>
     <div class="email-container">
         <div class="email-header">
@@ -127,7 +170,8 @@
                 <h2>Nueva inscripción</h2>
                 <p>Se ha inscrito un nuevo usuario en la carrera <span class="highlight">{{ $carrera->nombre }}</span>:</p>
                 <ul>
-                    <li><strong>Nombre:</strong> {{ $usuario->name }} {{ $usuario->apellido1 }} {{ $usuario->apellido2 }}</li>
+                    <li><strong>Nombre:</strong> {{ $usuario->name }} {{ $usuario->apellido1 }} {{ $usuario->apellido2 }}
+                    </li>
                     <li><strong>Email:</strong> {{ $usuario->email }}</li>
                     <li><strong>Teléfono:</strong> {{ $usuario->telefono }}</li>
                     <li><strong>DNI:</strong> {{ $usuario->dni }}</li>
@@ -136,14 +180,16 @@
                     <li><strong>Modalidad:</strong> {{ $usuario->pivot->modalidad }}</li>
                     <li><strong>Categoría:</strong> {{ $usuario->pivot->categoria }}</li>
                 </ul>
-                <p style="margin-top:24px;">Consulta la plataforma para más detalles. <a href="{{ url('/') }}">Ir al inicio</a></p>
+                <p style="margin-top:24px;">Consulta la plataforma para más detalles. <a href="{{ url('/') }}">Ir al
+                        inicio</a></p>
             @else
                 <h2>¡Gracias por inscribirte en <span class="highlight">{{ $carrera->nombre }}</span>!</h2>
                 <p>
                     Estimado/a <strong>{{ $usuario->name }}</strong>,
                 </p>
                 <p>
-                    Le confirmamos que su inscripción en la carrera <span class="highlight">{{ $carrera->nombre }}</span> se ha realizado correctamente.<br>
+                    Le confirmamos que su inscripción en la carrera <span class="highlight">{{ $carrera->nombre }}</span> se
+                    ha realizado correctamente.<br>
                     A continuación, le recordamos los detalles de su inscripción:
                 </p>
                 <ul>
@@ -155,7 +201,7 @@
                 <p>
                     Si tiene cualquier duda, puede contactar con nosotros respondiendo a este correo.<br>
                     <strong>¡Gracias por confiar en Corre y Vuela!<br>
-                    Le esperamos en la línea de salida.</strong>
+                        Le esperamos en la línea de salida.</strong>
                 </p>
                 <a href="{{ url('/') }}" class="cta">Ir a la web</a>
                 <p style="margin-top: 40px;">
@@ -169,4 +215,5 @@
         </div>
     </div>
 </body>
+
 </html>

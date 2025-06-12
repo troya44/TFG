@@ -9,7 +9,6 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
   <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
   <style>
-    /* Galería */
     .galeria {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
@@ -39,14 +38,13 @@
       border-radius: 12px;
       display: block;
       user-select: none;
-      pointer-events: none; /* para que el click lo tome el div padre */
+      pointer-events: none;
     }
     .foto:hover {
       transform: scale(1.05);
       box-shadow: 0 12px 24px rgba(0,0,0,0.12);
     }
 
-    /* Contenedor filtro + botón */
     .controls {
       max-width: 720px;
       margin: 1.5rem auto 0 auto;
@@ -99,7 +97,6 @@
       transform: scale(1.05);
     }
 
-    /* Lightbox */
     .lightbox {
       display: none;
       position: fixed;
@@ -123,7 +120,6 @@
       user-select: none;
     }
 
-    /* Título principal */
     h1.page-title {
       text-align: center;
       font-family: 'Georgia', serif;
@@ -134,7 +130,6 @@
       text-shadow: 1px 1px 6px #f5e6b2;
     }
 
-    /* Botón volver */
     form.volver {
       max-width: 720px;
       margin: 0 auto 3rem auto;
@@ -244,7 +239,6 @@
   </div>
 
   <script>
-    // Lógica lightbox
     const fotos = document.querySelectorAll('.foto');
     const lightbox = document.querySelector('.lightbox');
     const lightboxImg = lightbox.querySelector('img');
@@ -257,7 +251,6 @@
         lightbox.classList.add('active');
         lightboxImg.focus();
       });
-      // Soporte con teclado (Enter)
       foto.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();

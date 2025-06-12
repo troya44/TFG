@@ -19,14 +19,12 @@ Route::get('/', function () {
 });
 
 
-// Rutas de autenticación
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
 
-// Ruta para procesar el formulario de registro (POST)
 Route::post('/register', [AuthController::class, 'register']);
 
 
@@ -64,12 +62,8 @@ Route::post('/menuUsuario/actualizar', [AuthController::class, 'actualizarPerfil
 Route::post('/menuUsuario/foto', [AuthController::class, 'actualizarFoto'])->name('auth.actualizarFoto');
 
 
-// Mostrar formulario para solicitar el enlace de reseteo
 Route::get('forgot-password', [AuthController::class, 'showForgotPasswordForm'])->name('password.request');
-// Procesar el envío del email
 Route::post('forgot-password', [AuthController::class, 'sendResetLinkEmail'])->name('password.email');
 
-// Mostrar formulario para cambiar la contraseña
 Route::get('reset-password/{token}', [AuthController::class, 'showResetPasswordForm'])->name('password.reset');
-// Procesar el cambio de contraseña
 Route::post('reset-password', [AuthController::class, 'resetPassword'])->name('password.update');

@@ -26,7 +26,6 @@
             position: relative;
         }
 
-        /* Carrusel de fondo */
         .slideshow-container {
             position: fixed;
             top: 0;
@@ -55,7 +54,6 @@
             opacity: 1;
         }
 
-        /* Centrado absoluto del formulario */
         .center-container {
             position: fixed;
             left: 0;
@@ -161,37 +159,34 @@
             <h1>Iniciar sesión</h1>
             <form action="{{ route('login') }}" method="POST">
                 @csrf
-                <!-- Campo de DNI -->
                 <div class="form-group">
                     <label for="dni">Introduzca su Dni:</label>
-                    <input type="text" name="dni" id="dni" value="{{ old('dni') }}" required autofocus placeholder="Introduce su Dni">
+                    <input type="text" name="dni" id="dni" value="{{ old('dni') }}" required autofocus
+                        placeholder="Introduce su Dni">
                     @error('dni')
-                    <span style="color:red;">{{ $message }}</span>
+                        <span style="color:red;">{{ $message }}</span>
                     @enderror
                 </div>
-                <!-- Campo de contraseña -->
                 <div class="form-group">
                     <label for="password">Contraseña:</label>
                     <input type="password" name="password" id="password" required placeholder="Introduce tu contraseña">
                     @error('password')
-                    <span style="color:red;">{{ $message }}</span>
+                        <span style="color:red;">{{ $message }}</span>
                     @enderror
                 </div>
-                <!-- Botón de envío -->
                 <div class="form-group">
-                    <button type="submit" style="color: #2d3540; font-size: 16px; font-weight: 600;">Iniciar sesión</button>
+                    <button type="submit" style="color: #2d3540; font-size: 16px; font-weight: 600;">Iniciar
+                        sesión</button>
                     <a href="{{ route('password.request') }}">¿Olvidaste tu contraseña?</a>
 
                 </div>
             </form>
-            <!-- Enlace para registro -->
             <p>¿No tienes una cuenta?
                 <a href="{{ route('register') }}">Regístrate aquí</a>
             </p>
         </div>
     </div>
 
-    <!-- Carrusel JS -->
     <script>
         let slideIndex = 0;
         const slides = document.querySelectorAll('.mySlides');
@@ -205,7 +200,7 @@
                 slideIndex = 1
             }
             slides[slideIndex - 1].classList.add('active');
-            setTimeout(showSlides, 8000); // Cambia cada 4 segundos
+            setTimeout(showSlides, 8000);
         }
         if (slides.length > 1) {
             setTimeout(showSlides, 8000);

@@ -10,24 +10,23 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-  display: flex;
-  justify-content: center; /* Centra horizontalmente */
-  align-items: center;     /* Centra verticalmente */
-  height: 100vh;           /* Para que tome toda la altura visible */
-  margin: 0;               /* Quitar margenes predeterminados */
-  position: relative;      /* Para que el slideshow quede debajo */
-  z-index: 1;              /* Para que esté encima del slideshow */
-}
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            position: relative;
+            z-index: 1;
+        }
 
-.main-content {
-  z-index: 10;             /* Para que esté siempre encima del slideshow */
-  background-color: rgba(255, 255, 255, 0.85); /* Fondo blanco semitransparente para legibilidad */
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.3);
-}
+        .main-content {
+            z-index: 10;
+            background-color: rgba(255, 255, 255, 0.85);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        }
 
-        /* Carrusel de fondo */
         .slideshow-container {
             position: fixed;
             top: 0;
@@ -60,7 +59,7 @@
 
 <body>
 
-<div class="slideshow-container">
+    <div class="slideshow-container">
         <div class="mySlides active">
             <img src="{{ asset('images/fotoCorriendo.jpg') }}" alt="Fondo 1">
         </div>
@@ -71,45 +70,39 @@
             <img src="{{ asset('images/fotoSenderismo.webp') }}" alt="Fondo 3">
         </div>
     </div>
-<div class="main-content" style="max-width: 400px;">
-    <h1 style="margin-bottom: 1.5rem;">Recuperar contraseña</h1>
+    <div class="main-content" style="max-width: 400px;">
+        <h1 style="margin-bottom: 1.5rem;">Recuperar contraseña</h1>
 
-    @if (session('status'))
-        <div style="background: #e2c27533; color: #2d3540; border-radius: 7px; padding: 0.8rem 1rem; margin-bottom: 1rem; text-align: center; font-weight: 500;">
-            {{ session('status') }}
-        </div>
-    @endif
+        @if (session('status'))
+            <div
+                style="background: #e2c27533; color: #2d3540; border-radius: 7px; padding: 0.8rem 1rem; margin-bottom: 1rem; text-align: center; font-weight: 500;">
+                {{ session('status') }}
+            </div>
+        @endif
 
-    <form action="{{ route('password.email') }}" method="POST" autocomplete="off">
-        @csrf
+        <form action="{{ route('password.email') }}" method="POST" autocomplete="off">
+            @csrf
 
-        <div class="form-group">
-            <label for="email">Correo electrónico:</label>
-            <input
-                type="email"
-                name="email"
-                id="email"
-                required
-                placeholder="Introduce tu correo"
-                value="{{ old('email') }}"
-                autocomplete="email"
-            >
-            @error('email')
-                <div style="color: #c0392b; font-size: 0.97em; margin-top: 0.3em;">{{ $message }}</div>
-            @enderror
-        </div>
+            <div class="form-group">
+                <label for="email">Correo electrónico:</label>
+                <input type="email" name="email" id="email" required placeholder="Introduce tu correo"
+                    value="{{ old('email') }}" autocomplete="email">
+                @error('email')
+                    <div style="color: #c0392b; font-size: 0.97em; margin-top: 0.3em;">{{ $message }}</div>
+                @enderror
+            </div>
 
-        <div class="form-group" style="margin-top: 1.2rem;">
-            <button type="submit">
-                Enviar enlace de recuperación
-            </button>
-        </div>
-    </form>
+            <div class="form-group" style="margin-top: 1.2rem;">
+                <button type="submit">
+                    Enviar enlace de recuperación
+                </button>
+            </div>
+        </form>
 
-    <p style="margin-top: 2rem;">
-        <a href="{{ route('login') }}">Volver al inicio de sesión</a>
-    </p>
-</div>
+        <p style="margin-top: 2rem;">
+            <a href="{{ route('login') }}">Volver al inicio de sesión</a>
+        </p>
+    </div>
 
 
 

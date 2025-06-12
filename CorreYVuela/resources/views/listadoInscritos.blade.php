@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +11,6 @@
 
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <style>
-        /* Estilos generales */
         .carrera-cartel {
             display: block;
             margin: 2rem auto 1.5rem auto;
@@ -35,7 +35,8 @@
             margin-top: 2rem;
         }
 
-        .tabla-inscritos th, .tabla-inscritos td {
+        .tabla-inscritos th,
+        .tabla-inscritos td {
             padding: 1rem;
             text-align: center;
             border: 1px solid #e0e0e0;
@@ -46,7 +47,6 @@
             color: white;
         }
 
-        /* Estilo para botones */
         .btn-admin {
             padding: 0.6rem 1.2rem;
             background-color: #8d7964;
@@ -64,7 +64,6 @@
             background-color: #bfae9c;
         }
 
-        /* Estilo para la lista de inscritos cuando no es administrador */
         .inscrito-item {
             background: rgba(250, 247, 240, 0.93);
             margin-bottom: 0.7rem;
@@ -86,7 +85,6 @@
             margin-left: 1em;
         }
 
-        /* Estilo para el botón de "Editar Usuario" */
         .btn-edit {
             background-color: #8d7964;
             color: white;
@@ -108,7 +106,6 @@
             margin-right: 0.5rem;
         }
 
-        /* Ajuste de icono y espaciado */
         .inscrito-item .btn-container {
             display: flex;
             align-items: center;
@@ -119,6 +116,7 @@
         }
     </style>
 </head>
+
 <body>
     <header class="navbar">
         <div class="navbar-logo">
@@ -132,13 +130,13 @@
                     @if(Auth::user()->admin)
                         Bienvenido, administrador {{ Auth::user()->name }}
                         <img class="perfil-usuario-header"
-                             src="{{ Auth::user()->foto_perfil ? asset('storage/' . Auth::user()->foto_perfil) : asset('images/default-profile.png') }}"
-                             alt="Foto de perfil">
+                            src="{{ Auth::user()->foto_perfil ? asset('storage/' . Auth::user()->foto_perfil) : asset('images/default-profile.png') }}"
+                            alt="Foto de perfil">
                     @else
                         Bienvenido, {{ Auth::user()->name }}
                         <img class="perfil-usuario-header"
-                             src="{{ Auth::user()->foto_perfil ? asset('storage/' . Auth::user()->foto_perfil) : asset('images/default-profile.png') }}"
-                             alt="Foto de perfil">
+                            src="{{ Auth::user()->foto_perfil ? asset('storage/' . Auth::user()->foto_perfil) : asset('images/default-profile.png') }}"
+                            alt="Foto de perfil">
                     @endif
                 @endauth
             </p>
@@ -167,7 +165,7 @@
         @endif
         @php
             $modalidades = ['Senderismo', 'Ciclismo', 'Trail'];
-            $inscritosPorModalidad = $inscritos->groupBy(function($inscrito) {
+            $inscritosPorModalidad = $inscritos->groupBy(function ($inscrito) {
                 return $inscrito->pivot->modalidad ?? 'Sin modalidad';
             });
         @endphp
@@ -220,7 +218,8 @@
                                             <td>
                                                 @if(Auth::id() === $inscrito->id)
                                                     <div class="btn-container">
-                                                        <a href="{{ route('inscripcion.edit', [$carrera->id, $inscrito->id]) }}" class="btn-edit">
+                                                        <a href="{{ route('inscripcion.edit', [$carrera->id, $inscrito->id]) }}"
+                                                            class="btn-edit">
                                                             <i class="fa fa-pencil-alt"></i> Editar Usuario
                                                         </a>
                                                     </div>
@@ -263,4 +262,5 @@
         </form>
     </div>
 </body>
+
 </html>

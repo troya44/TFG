@@ -15,9 +15,7 @@ use Illuminate\Support\Facades\Notification;
 
 class CarreraController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index()
     {
         $carreras = Carrera::all();
@@ -27,9 +25,7 @@ class CarreraController extends Controller
 
     
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    
     public function create(Request $request)
     {
         return view('registrarCarrera');
@@ -72,7 +68,7 @@ public function informacionPrueba($id)
 public function listadoInscritos($id)
 {
     $carrera = Carrera::findOrFail($id);
-    $inscritos = $carrera->inscritos; // Colección de usuarios inscritos
+    $inscritos = $carrera->inscritos; 
     return view('listadoInscritos', compact('carrera', 'inscritos'));
 }
 
@@ -88,7 +84,6 @@ public function inscribirse(Request $request, $id)
     $fechaNacimiento = $usuario->fecha_nacimiento;
     $edad = Carbon::parse($fechaNacimiento)->age;
 
-    // Asignar categoría según edad
     if ($edad >= 15 && $edad <= 16) {
         $categoria = 'Cadete';
     } elseif ($edad >= 17 && $edad <= 18) {
@@ -109,21 +104,17 @@ public function inscribirse(Request $request, $id)
         $categoria = 'Sin categoría';
     }
 
-    // Primero attach
     $carrera->inscritos()->attach($usuario->id, [
         'modalidad' => $request->input('modalidad'),
         'categoria' => $categoria,
     ]);
 
-    // Ahora recupera el usuario con los datos de la inscripción (pivote)
     $usuarioPivot = $carrera->inscritos()->where('usuario_id', $usuario->id)->first();
 
-    // Notificar al usuario
     if ($usuarioPivot) {
         $usuarioPivot->notify(new InscripcionRealizada($carrera, $usuarioPivot));
     }
 
-    // Notificar a la empresa (correo desde .env)
     $correoEmpresa = config('mail.from.address', 'correyvuela.contacto@gmail.com');
     Notification::route('mail', $correoEmpresa)
         ->notify(new InscripcionRealizada($carrera, $usuarioPivot));
@@ -139,12 +130,10 @@ public function edit($carreraId, $usuarioId)
         $carrera = Carrera::findOrFail($carreraId);
         $usuario = Usuario::findOrFail($usuarioId);
 
-        // Solo el usuario puede editar su inscripción
         if (Auth::id() !== $usuario->id) {
             abort(403, 'No autorizado');
         }
 
-        // Busca la inscripción del usuario en la carrera (tabla pivote)
         $inscripcion = $carrera->inscritos()->where('usuario_id', $usuario->id)->first();
 
         if (!$inscripcion) {

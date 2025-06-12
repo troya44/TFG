@@ -59,32 +59,25 @@ class AuthController extends Controller
 
 
 
-        // Intentar autenticar con las credenciales
         if (Auth::attempt(['dni' => $request->dni, 'password' => $request->password])) {
-            // Si la autenticación es exitosa, regenerar la sesión
             $request->session()->regenerate();
 
-            // Redirigir al usuario a la página de reportes
             return redirect()->route('inicio');
         }
 
-        // Si no se pudo autenticar, regresar con un mensaje de error
         return back()->withErrors([
             'dni' => 'Las credenciales no coinciden con nuestros registros.',
         ]);
     }
 
 
-    // Muestra el formulario de registro
     public function showRegisterForm()
     {
         return view('auth.register');
     }
 
-    // Registra un nuevo usuario
     public function register(Request $request)
     {
-        // Validación de los datos del formulario
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'apellido1' => 'required|string|max:255',
@@ -100,7 +93,6 @@ class AuthController extends Controller
 
         ]);
 
-        // Si la validación falla, redirigimos de vuelta con errores
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
@@ -108,7 +100,6 @@ class AuthController extends Controller
         $categoria = $this->calcularCategoria($request->fecha_nacimiento);
 
 
-        // Crear el nuevo usuario y cifrar la contraseña antes de guardarla
         $usuario = Usuario::create([
             'name' => $request->name,
             'apellido1' => $request->apellido1,
@@ -121,13 +112,12 @@ class AuthController extends Controller
             'admin' => 0, // Por defecto, el nuevo usuario no es administrador
             'email' => $request->email,
             'categoria' => $categoria,
-            'password' => bcrypt($request->password), // Asegúrate de cifrar la contraseña
+            'password' => bcrypt($request->password), // cifrar la contraseña
 
         ]);
 
         $usuario->notify(new UsuarioRegistrado($usuario));
 
-        // Notificar a la empresa
         $correoEmpresa = config('mail.from.address', 'correyvuela.contacto@gmail.com');
         Notification::route('mail', $correoEmpresa)->notify(new UsuarioRegistrado($usuario));
 
@@ -138,8 +128,8 @@ class AuthController extends Controller
 
     public function logout()
     {
-        Auth::logout();  // Cerrar la sesión
-        return redirect()->route('login');  // Redirigir al login
+        Auth::logout();  
+        return redirect()->route('login');  
     }
 
 
@@ -150,7 +140,7 @@ class AuthController extends Controller
 
     public function store(Request $request)
     {
-        $usuarioAutenticado = Auth::user(); // Usuario autenticado
+        $usuarioAutenticado = Auth::user(); 
 
         // Validar los datos del formulario
         $validatedData = $request->validate([
@@ -171,7 +161,6 @@ class AuthController extends Controller
 
 
 
-        // Crear el usuario
         $user = new Usuario();
         $user->name = $validatedData['name'];
         $user->apellido1 = $validatedData['apellido1'];
@@ -182,22 +171,19 @@ class AuthController extends Controller
         $user->telefono = $validatedData['telefono'];
         $user->sexo = $validatedData['sexo'];
         $user->fecha_nacimiento = $validatedData['fecha_nacimiento'];
-        $user->admin = 0; // Por defecto, el nuevo usuario no es administrador
+        $user->admin = 0; 
         $user->categoria = $categoria;
         $user->password = bcrypt($validatedData['password']);
 
 
 
-        // Guardar el nuevo usuario
         $user->save();
 
         $user->notify(new UsuarioRegistrado($user));
 
-        // Notificar a la empresa
         $correoEmpresa = config('mail.from.address', 'correyvuela.contacto@gmail.com');
         Notification::route('mail', $correoEmpresa)->notify(new UsuarioRegistrado($user));
 
-        // Redirigir con un mensaje de éxito
         return redirect()->route('login')->with('success', 'Usuario creado exitosamente');
     }
 
@@ -217,11 +203,10 @@ class AuthController extends Controller
     public function menuUsuario()
     {
         $usuario = Auth::user();
-        $carreras = $usuario->carreras ?? []; // Asegúrate de tener la relación en el modelo Usuario
+        $carreras = $usuario->carreras ?? []; 
         return view('menuUsuario', compact('usuario', 'carreras'));
     }
 
-    // Actualizar datos del usuario
     public function actualizarPerfil(Request $request)
     {
         $usuario = Auth::user();
@@ -247,7 +232,6 @@ class AuthController extends Controller
         return back()->with('success', 'Perfil actualizado correctamente.');
     }
 
-    // Subir o actualizar foto de perfil
     public function actualizarFoto(Request $request)
     {
         $usuario = Auth::user();
@@ -256,7 +240,7 @@ class AuthController extends Controller
             'foto_perfil' => 'required|image|max:2048',
         ]);
 
-        // Borrar foto anterior si existe
+
         if ($usuario->foto_perfil) {
             Storage::disk('public')->delete($usuario->foto_perfil);
         }

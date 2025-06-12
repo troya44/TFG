@@ -27,7 +27,7 @@ class GaleriaController extends Controller {
     {
         $request->validate([
             'carrera_id' => 'required|exists:carreras,id',
-            'imagenes.*' => 'required|image|max:2048', // Valida cada imagen
+            'imagenes.*' => 'required|image|max:2048', 
         ]);
 
         if($request->hasFile('imagenes')) {

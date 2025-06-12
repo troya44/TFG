@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -17,11 +18,11 @@
       display: flex;
       flex-direction: column;
     }
-    
-    
-    
-    
-    
+
+
+
+
+
 
     main {
       flex-grow: 1;
@@ -32,6 +33,7 @@
       border-radius: 15px;
       box-shadow: 0 12px 40px rgba(226, 194, 117, 0.25);
     }
+
     main h1 {
       text-align: center;
       margin-bottom: 2rem;
@@ -39,6 +41,7 @@
       font-weight: 700;
       text-shadow: 1px 1px 6px #f5e6b2;
     }
+
     label {
       font-weight: 600;
       color: #6c757d;
@@ -46,7 +49,9 @@
       margin-bottom: 0.5rem;
       margin-top: 1rem;
     }
-    select, input[type="file"] {
+
+    select,
+    input[type="file"] {
       width: 100%;
       padding: 0.5rem 1rem;
       border-radius: 12px;
@@ -58,11 +63,14 @@
       transition: box-shadow 0.3s ease;
       cursor: pointer;
     }
-    select:focus, input[type="file"]:focus {
+
+    select:focus,
+    input[type="file"]:focus {
       outline: none;
       box-shadow: 0 0 10px #e2c275;
       background-color: #fffbe0;
     }
+
     button[type="submit"] {
       width: 100%;
       margin-top: 2.2rem;
@@ -81,6 +89,7 @@
       align-items: center;
       gap: 0.5rem;
     }
+
     button[type="submit"]:hover {
       background: linear-gradient(90deg, #f9f6f2, #f5e6b2);
       transform: scale(1.04);
@@ -91,6 +100,7 @@
       margin: 2rem auto 0 auto;
       text-align: center;
     }
+
     .btn-admin button {
       background: linear-gradient(90deg, #f9f6f2, #f5e6b2);
       border: none;
@@ -103,12 +113,14 @@
       cursor: pointer;
       transition: background 0.3s ease, transform 0.2s ease;
     }
+
     .btn-admin button:hover {
       background: linear-gradient(90deg, #f5e6b2, #f9f6f2);
       transform: scale(1.05);
     }
   </style>
 </head>
+
 <body>
   <header class="navbar">
     <div class="navbar-logo">
@@ -119,36 +131,32 @@
     <nav class="navbar-links">
       <p class="bienvenida">
         @auth
-          @if(Auth::user()->admin)
-            Bienvenido, administrador {{ Auth::user()->name }}
-            <img
-              class="perfil-usuario-header"
-              src="{{ Auth::user()->foto_perfil ? asset('storage/' . Auth::user()->foto_perfil) : asset('images/default-profile.png') }}"
-              alt="Foto de perfil"
-            />
-          @else
-            Bienvenido, {{ Auth::user()->name }}
-            <img
-              class="perfil-usuario-header"
-              src="{{ Auth::user()->foto_perfil ? asset('storage/' . Auth::user()->foto_perfil) : asset('images/default-profile.png') }}"
-              alt="Foto de perfil"
-            />
-          @endif
-        @endauth
+        @if(Auth::user()->admin)
+        Bienvenido, administrador {{ Auth::user()->name }}
+        <img class="perfil-usuario-header"
+        src="{{ Auth::user()->foto_perfil ? asset('storage/' . Auth::user()->foto_perfil) : asset('images/default-profile.png') }}"
+        alt="Foto de perfil" />
+      @else
+        Bienvenido, {{ Auth::user()->name }}
+        <img class="perfil-usuario-header"
+        src="{{ Auth::user()->foto_perfil ? asset('storage/' . Auth::user()->foto_perfil) : asset('images/default-profile.png') }}"
+        alt="Foto de perfil" />
+      @endif
+    @endauth
       </p>
 
       <a href="{{ url('menuUsuario') }}" class="btn-logout btn-zona-privada" style="margin-top: 35px;">
-                <i class="fas fa-user-circle"></i>
-                Zona privada
-                <span class="tooltip-text">Ver tu perfil y datos</span>
-            </a>
-            <form action="{{ route('logout') }}" method="POST" class="logout">
-                @csrf
-                <button type="submit" class="btn-logout">
-                    Cerrar sesión
-                    <span class="tooltip-text">Cerrar sesión</span>
-                </button>
-            </form>
+        <i class="fas fa-user-circle"></i>
+        Zona privada
+        <span class="tooltip-text">Ver tu perfil y datos</span>
+      </a>
+      <form action="{{ route('logout') }}" method="POST" class="logout">
+        @csrf
+        <button type="submit" class="btn-logout">
+          Cerrar sesión
+          <span class="tooltip-text">Cerrar sesión</span>
+        </button>
+      </form>
     </nav>
   </header>
 
@@ -156,18 +164,18 @@
     <h1>Subir foto a la galería</h1>
 
     <form action="{{ route('galeria.store') }}" method="POST" enctype="multipart/form-data">
-        @csrf
-        <label for="carrera_id">Carrera:</label>
-        <select name="carrera_id" required>
-            @foreach($carreras as $carrera)
-                <option value="{{ $carrera->id }}">{{ $carrera->nombre }}</option>
-            @endforeach
-        </select>
+      @csrf
+      <label for="carrera_id">Carrera:</label>
+      <select name="carrera_id" required>
+        @foreach($carreras as $carrera)
+      <option value="{{ $carrera->id }}">{{ $carrera->nombre }}</option>
+    @endforeach
+      </select>
 
-        <label for="imagenes">Imágenes:</label>
-        <input type="file" name="imagenes[]" multiple accept="image/*" required>
+      <label for="imagenes">Imágenes:</label>
+      <input type="file" name="imagenes[]" multiple accept="image/*" required>
 
-        <button type="submit" class="fas fa-upload">Subir</button>
+      <button type="submit" class="fas fa-upload">Subir</button>
     </form>
 
     <form action="{{ route('inicio') }}" method="GET" class="btn-admin">
@@ -177,4 +185,5 @@
     </form>
   </main>
 </body>
+
 </html>
